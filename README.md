@@ -6,4 +6,4 @@
 
 2. [Masked-Devops AWR reports](doc/Masked-DevopsAWRreports.md)
     
-    Create AWR/ASH/ADDM reports files  
+    Create AWR/ASH/ADDM reports files.  
