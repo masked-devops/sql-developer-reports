@@ -4132,6 +4132,14 @@ from (
                 left outer join dba_hist_database_instance di on s.dbid = di.dbid and s.instance_number = di.instance_number and s.startup_time = di.startup_time
 	)
 where  end_interval_time=  to_char(:END_INTERVAL_TIME,'yyyy-mm-dd hh24:mi:ss')]]></sql>
+				<binds>
+					<bind id="END_INTERVAL_TIME">
+						<prompt><![CDATA[END_INTERVAL_TIME]]></prompt>
+						<tooltip><![CDATA[END_INTERVAL_TIME]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+				</binds>
 			</query>
 		</display>
 		<display id="null" type="" style="Table" enable="true">
@@ -5685,7 +5693,7 @@ PROMPT   select dbms_sqltune.report_tuning_task(:task_name) as recommendations f
 		</display>
 	</display>
 	<display id="8dc29dde-0183-1000-8009-c0a83801b45d" type="" style="Table" enable="true">
-		<name><![CDATA[Masked-Devops Trace File Reader]]></name>
+		<name><![CDATA[Masked-Devops Read Trace File]]></name>
 		<description><![CDATA[]]></description>
 		<tooltip><![CDATA[]]></tooltip>
 		<drillclass><![CDATA[]]></drillclass>
@@ -7616,13 +7624,13 @@ order by end_interval_time asc]]></sql>
 			<binds>
 				<bind id="P_START_DATE">
 					<prompt><![CDATA[P_START_DATE]]></prompt>
-					<tooltip><![CDATA[P_START_DATE]]></tooltip>
+					<tooltip><![CDATA[yyyy-mm-dd hh24:mi]]></tooltip>
 					<value><![CDATA[NULL_VALUE]]></value>
 					<bracket><![CDATA[null]]></bracket>
 				</bind>
 				<bind id="P_END_DATE">
 					<prompt><![CDATA[P_END_DATE]]></prompt>
-					<tooltip><![CDATA[P_END_DATE]]></tooltip>
+					<tooltip><![CDATA[yyyy-mm-dd hh24:mi]]></tooltip>
 					<value><![CDATA[NULL_VALUE]]></value>
 					<bracket><![CDATA[null]]></bracket>
 				</bind>
@@ -7947,13 +7955,13 @@ order by end_interval_time,metric]]></sql>
 			<binds>
 				<bind id="P_START_DATE">
 					<prompt><![CDATA[P_START_DATE]]></prompt>
-					<tooltip><![CDATA[P_START_DATE]]></tooltip>
+					<tooltip><![CDATA[yyyy-mm-dd hh24:mi]]></tooltip>
 					<value><![CDATA[2022-09-26 23:00]]></value>
 					<bracket><![CDATA[null]]></bracket>
 				</bind>
 				<bind id="P_END_DATE">
 					<prompt><![CDATA[P_END_DATE]]></prompt>
-					<tooltip><![CDATA[P_END_DATE]]></tooltip>
+					<tooltip><![CDATA[yyyy-mm-dd hh24:mi]]></tooltip>
 					<value><![CDATA[NULL_VALUE]]></value>
 					<bracket><![CDATA[null]]></bracket>
 				</bind>
@@ -8019,26 +8027,6 @@ from (select
             and dhs.end_interval_time between  parms.start_date and parms.end_date
 )
 order by end_interval_time]]></sql>
-				<binds>
-					<bind id="p_start_date">
-						<prompt><![CDATA[p_start_date]]></prompt>
-						<tooltip><![CDATA[p_start_date]]></tooltip>
-						<value><![CDATA[NULL_VALUE]]></value>
-						<bracket><![CDATA[null]]></bracket>
-					</bind>
-					<bind id="p_end_date">
-						<prompt><![CDATA[p_end_date]]></prompt>
-						<tooltip><![CDATA[p_end_date]]></tooltip>
-						<value><![CDATA[NULL_VALUE]]></value>
-						<bracket><![CDATA[null]]></bracket>
-					</bind>
-					<bind id="P_INST_ID">
-						<prompt><![CDATA[P_INST_ID]]></prompt>
-						<tooltip><![CDATA[P_INST_ID]]></tooltip>
-						<value><![CDATA[NULL_VALUE]]></value>
-						<bracket><![CDATA[null]]></bracket>
-					</bind>
-				</binds>
 			</query>
 		</display>
 		<display id="null" type="" style="Table" enable="true">
@@ -8148,6 +8136,153 @@ from (  select
         group by end_interval_time
     ) stats
 order by end_interval_time]]></sql>
+			</query>
+		</display>
+	</display>
+	<display id="aceb24cd-0183-1000-8065-c0a838017079" type="" style="Table" enable="true">
+		<name><![CDATA[Masked-Devops Read Alert Log]]></name>
+		<description><![CDATA[]]></description>
+		<tooltip><![CDATA[]]></tooltip>
+		<drillclass><![CDATA[]]></drillclass>
+		<CustomValues>
+			<TYPE><![CDATA[horizontal]]></TYPE>
+		</CustomValues>
+		<query>
+			<sql><![CDATA[-- -----------------------------------------------------------------------------
+-- Author      : Masked DevOps
+-- Date        : Jan 2012
+-- Version     : 0.1
+--
+-- SQL Developer report for database administration 
+-- Copyright (C) 2022  Emanuele Moccia
+-- masked.devops@yahoo.com
+-- 
+-- This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU General Public License as published by
+-- the Free Software Foundation, either version 3 of the License, or
+-- any later version.
+-- 
+-- This program is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-- GNU General Public License for more details.
+-- 
+-- You should have received a copy of the GNU General Public License
+-- along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-- -----------------------------------------------------------------------------
+with
+parms as (select 
+			 nvl(to_date(:P_START_DATE,'yyyy-mm-dd hh24:mi'),sysdate-1)  start_date
+			,nvl(to_date(:P_END_DATE,'yyyy-mm-dd hh24:mi'),sysdate)	     end_date
+		  from dual)
+select
+   to_char(originating_timestamp,'yyyy-mm-dd hh24:mi:ss') originating_timestamp
+    --,addr                          
+    --,indx                          
+    --,inst_id                       
+    --,adr_path_idx                  
+    --,adr_home                      
+    --,normalized_timestamp          
+    --,organization_id               
+    --,component_id                  
+    --,host_id                      --DNS hostname of originating host                       
+    --,host_address                 --IP of other network address of the originating host for the mesaage              
+    --,message_type                  
+    ,message_level                 
+    --,message_id                    
+    --,message_group                 
+    --,client_id                     
+    --,module_id                     
+    --,process_id                   --ID of the process that originated the message                  
+    --,thread_id                     
+    --,user_id                       
+    --,instance_id                   
+    --,detailed_location            --Absolute pathname of supplemental detail file on the originating host             
+    --,upstream_comp_id              
+    --,downstream_comp_id            
+    --,execution_context_id          
+    --,execution_context_sequence    
+    --,error_instance_id             
+    --,error_instance_sequence       
+    ,message_text                  
+    --,message_arguments            --Arguments to be bound with the generic text of the message             
+    --,supplemental_attributes       
+    --,supplemental_details          
+    --,partition                     
+    --,record_id                     
+    --,filename                      
+    --,problem_key                   
+    --,version    
+from v$diag_alert_ext
+    cross join parms
+where 1=1
+	and originating_timestamp between  parms.start_date and parms.end_date
+order by originating_timestamp
+;]]></sql>
+			<binds>
+				<bind id="P_START_DATE">
+					<prompt><![CDATA[P_START_DATE]]></prompt>
+					<tooltip><![CDATA[yyyy-mm-dd hh24:mi]]></tooltip>
+					<value><![CDATA[NULL_VALUE]]></value>
+					<bracket><![CDATA[null]]></bracket>
+				</bind>
+				<bind id="P_END_DATE">
+					<prompt><![CDATA[P_END_DATE]]></prompt>
+					<tooltip><![CDATA[yyyy-mm-dd hh24:mi]]></tooltip>
+					<value><![CDATA[NULL_VALUE]]></value>
+					<bracket><![CDATA[null]]></bracket>
+				</bind>
+			</binds>
+		</query>
+		<display id="null" type="" style="Table" enable="true">
+			<name><![CDATA[Info]]></name>
+			<description><![CDATA[]]></description>
+			<tooltip><![CDATA[]]></tooltip>
+			<drillclass><![CDATA[]]></drillclass>
+			<CustomValues>
+				<TYPE><![CDATA[horizontal]]></TYPE>
+			</CustomValues>
+			<query>
+				<sql><![CDATA[select 'Click on Read Trace File report to see the content of the trace mentioned in the message.' info from dual
+union all
+select 'Click on this tab again when finished to read the trace files.' info from dual]]></sql>
+			</query>
+		</display>
+		<display id="null" type="" style="Table" enable="true">
+			<name><![CDATA[Read Trace File]]></name>
+			<description><![CDATA[]]></description>
+			<tooltip><![CDATA[]]></tooltip>
+			<drillclass><![CDATA[]]></drillclass>
+			<CustomValues>
+				<TYPE><![CDATA[horizontal]]></TYPE>
+			</CustomValues>
+			<query>
+				<sql><![CDATA[select  
+     to_char(timestamp,'yyyy-mm-dd hh24:mi:ss') timestamp                           
+    --,adr_home 
+    ,trace_filename 
+    ,payload 
+    ,record_level 
+    ,parent_level 
+    ,record_type 
+    ,section_id 
+    ,section_name 
+    ,component_name 
+    ,operation_name 
+    ,file_name 
+    ,function_name 
+    ,line_number 
+    ,thread_id 
+    ,session_id 
+    ,serial# 
+    ,con_uid 
+    ,container_name 
+    ,con_id  
+from v$diag_trace_file_contents dtfc
+where 1=1
+    and instr(trim(regexp_substr(:MESSAGE_TEXT,'(\s)(\S*)(.trc)')), trace_filename) > 0
+    and instr(trim(regexp_substr(:MESSAGE_TEXT,'(\s)(\S*)(.trc)')), adr_home) > 0
+order by timestamp,trace_filename,line_number]]></sql>
 			</query>
 		</display>
 	</display>
