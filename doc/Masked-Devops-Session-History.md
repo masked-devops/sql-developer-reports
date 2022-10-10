@@ -21,9 +21,10 @@ Parameters:
     start_date                  : yyyy-mm-dd hh24:mi   Default is sysdate-1  in that format
     end_date                    : yyyy-mm-dd hh24:mi   Default is sysdate    in that format
     interval                    : time slot in seconds, histogram width. Default 600
-    dim                         : instance_number | con_id | user_id | session_sid | xid | sql_exec_id |
-                                  sql_exec_id_plan | sql_exec_id_plan_oper | sql_id | current_obj# | module |
-                                  program | action | machine | event | wait_class.  Default wait_class
+    dim                         : instance_number | con_id | user_id | session_sid | xid |
+                                  sql_exec_id |  sql_exec_id_plan | sql_exec_id_plan_oper |
+                                  sql_id | current_obj# | module |program | action | machine |
+                                  event | wait_class.  Default wait_class
 
 Filters:
 
@@ -41,13 +42,8 @@ Filters:
     PLSQL_ENTRY_OBJECT_ID       : DBA_OBJECTS.object_id
     DBA_HIST_ONLY               : yes|no, yes=only data from CDB_HIST_ACTIVE_SESS_HISTORY
 
-
-
-
-
 ### start_date/end_date 
 They are the start/end of the samples timestamp in the two system views, if null is checked, their value will be sysdate-1/sysdate and all samples will be from V$ACTIVE_SESSION_HISTORY. By default, if the interval is in the last 24 hrs, the report will be on V$ACTIVE_SESSION_HISTORY, if the start time is older than 24 hrs, it will be on DBA_HIST_ACTIV   E_SESS_HISTORY, this behaviour can be changed with DBA_HIST_ONLY=yes ( valid only for reports in the last 24 hrs).
-
 
     start_date                  : 2022-09-25 04:00
     end_date                    : 2022-09-25 23:59
