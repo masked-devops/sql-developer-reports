@@ -555,7 +555,7 @@ where 1=1
 order by change_time
 ;]]></sql>
 		</query>
-		<display id="" type="" style="Table" enable="true">
+		<display id="null" type="" style="Table" enable="true">
 			<name><![CDATA[Trace File Content]]></name>
 			<description><![CDATA[]]></description>
 			<tooltip><![CDATA[]]></tooltip>
@@ -566,8 +566,8 @@ order by change_time
 			<query>
 				<sql><![CDATA[select  
      to_char(timestamp,'yyyy-mm-dd hh24:mi:ss') timestamp                           
-    ,adr_home 
-    ,trace_filename 
+--    ,adr_home 
+--    ,trace_filename 
     ,line_number 
     ,payload 
     ,record_type 
@@ -817,6 +817,38 @@ select
             or (stat.metric_name = 'Host CPU Usage Per Sec'       and stat.group_id = 2)
             )
 order by end_interval_time]]></sql>
+				<binds>
+					<bind id="P_START_DATE">
+						<prompt><![CDATA[P_START_DATE]]></prompt>
+						<tooltip><![CDATA[P_START_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="P_END_DATE">
+						<prompt><![CDATA[P_END_DATE]]></prompt>
+						<tooltip><![CDATA[P_END_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="P_INST_ID">
+						<prompt><![CDATA[P_INST_ID]]></prompt>
+						<tooltip><![CDATA[P_INST_ID]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="START_DATE">
+						<prompt><![CDATA[START_DATE]]></prompt>
+						<tooltip><![CDATA[START_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="END_DATE">
+						<prompt><![CDATA[END_DATE]]></prompt>
+						<tooltip><![CDATA[END_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+				</binds>
 			</query>
 		</display>
 		<display id="null" type="" style="Chart" enable="true">
@@ -867,6 +899,20 @@ where 1=1
         or (stat.metric_name = 'Host CPU Usage Per Sec'       and stat.group_id = 2)
         )
 order by end_interval_time]]></sql>
+				<binds>
+					<bind id="START_DATE">
+						<prompt><![CDATA[START_DATE]]></prompt>
+						<tooltip><![CDATA[START_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="END_DATE">
+						<prompt><![CDATA[END_DATE]]></prompt>
+						<tooltip><![CDATA[END_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+				</binds>
 			</query>
 		</display>
 		<display id="null" type="" style="Chart" enable="true">
@@ -950,6 +996,26 @@ unpivot (value FOR metric IN (
                             )
     )  
 order by end_interval_time,metric]]></sql>
+				<binds>
+					<bind id="START_DATE">
+						<prompt><![CDATA[START_DATE]]></prompt>
+						<tooltip><![CDATA[START_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="END_DATE">
+						<prompt><![CDATA[END_DATE]]></prompt>
+						<tooltip><![CDATA[END_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="INST_ID">
+						<prompt><![CDATA[INST_ID]]></prompt>
+						<tooltip><![CDATA[INST_ID]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+				</binds>
 			</query>
 		</display>
 	</display>
@@ -1097,6 +1163,14 @@ where 1=1
     and instr(trim(regexp_substr(:MESSAGE_TEXT,'(\s)(\S*)(.trc)')), trace_filename) > 0
     and instr(trim(regexp_substr(:MESSAGE_TEXT,'(\s)(\S*)(.trc)')), adr_home) > 0
 order by timestamp,trace_filename,line_number]]></sql>
+				<binds>
+					<bind id="MESSAGE_TEXT">
+						<prompt><![CDATA[MESSAGE_TEXT]]></prompt>
+						<tooltip><![CDATA[MESSAGE_TEXT]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+				</binds>
 			</query>
 		</display>
 	</display>
@@ -1216,6 +1290,26 @@ from (
 )
 where stat_name = stat_name_prev
 order by end_interval_time]]></sql>
+				<binds>
+					<bind id="NAME">
+						<prompt><![CDATA[NAME]]></prompt>
+						<tooltip><![CDATA[NAME]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="START_DATE">
+						<prompt><![CDATA[START_DATE]]></prompt>
+						<tooltip><![CDATA[START_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="END_DATE">
+						<prompt><![CDATA[END_DATE]]></prompt>
+						<tooltip><![CDATA[END_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+				</binds>
 			</query>
 		</display>
 		<display id="null" type="" style="Table" enable="true">
@@ -1471,6 +1565,26 @@ where 1=1
 	and s.inst_id = :INST_ID
     and s.sid = :SID
 	and s.serial# = :SERIAL#]]></sql>
+				<binds>
+					<bind id="INST_ID">
+						<prompt><![CDATA[INST_ID]]></prompt>
+						<tooltip><![CDATA[INST_ID]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="SID">
+						<prompt><![CDATA[SID]]></prompt>
+						<tooltip><![CDATA[SID]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="SERIAL#">
+						<prompt><![CDATA[SERIAL#]]></prompt>
+						<tooltip><![CDATA[SERIAL#]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+				</binds>
 			</query>
 		</display>
 		<display id="null" type="" style="Table" enable="true">
@@ -1574,7 +1688,7 @@ order by time_remaining]]></sql>
 			</query>
 		</display>
 		<display id="null" type="" style="Table" enable="true">
-			<name><![CDATA[ASH]]></name>
+			<name><![CDATA[ASH history]]></name>
 			<description><![CDATA[]]></description>
 			<tooltip><![CDATA[]]></tooltip>
 			<drillclass><![CDATA[]]></drillclass>
@@ -6141,13 +6255,13 @@ order by end_interval_time asc]]></sql>
 				<bind id="P_START_DATE">
 					<prompt><![CDATA[P_START_DATE]]></prompt>
 					<tooltip><![CDATA[yyyy-mm-dd hh24:mi]]></tooltip>
-					<value><![CDATA[NULL_VALUE]]></value>
+					<value><![CDATA[2022-09-25 15:00]]></value>
 					<bracket><![CDATA[null]]></bracket>
 				</bind>
 				<bind id="P_END_DATE">
 					<prompt><![CDATA[P_END_DATE]]></prompt>
 					<tooltip><![CDATA[yyyy-mm-dd hh24:mi]]></tooltip>
-					<value><![CDATA[NULL_VALUE]]></value>
+					<value><![CDATA[2022-09-26 :00:00]]></value>
 					<bracket><![CDATA[null]]></bracket>
 				</bind>
 				<bind id="P_INST_ID">
@@ -6204,6 +6318,20 @@ where 1=1
     and snap.end_interval_time between :START_DATE and :END_DATE
     and stat.metric_name in ('Physical Read IO Requests Per Sec', 'Physical Write Total IO Requests Per Sec')
 order by end_interval_time]]></sql>
+				<binds>
+					<bind id="START_DATE">
+						<prompt><![CDATA[START_DATE]]></prompt>
+						<tooltip><![CDATA[START_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="END_DATE">
+						<prompt><![CDATA[END_DATE]]></prompt>
+						<tooltip><![CDATA[END_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+				</binds>
 			</query>
 		</display>
 		<display id="null" type="" style="Chart" enable="true">
@@ -6252,6 +6380,20 @@ where 1=1
     and snap.end_interval_time between :START_DATE and :END_DATE
     and stat.metric_name in ('Physical Read Total Bytes Per Sec', 'Physical Write Total Bytes Per Sec')
 order by end_interval_time]]></sql>
+				<binds>
+					<bind id="START_DATE">
+						<prompt><![CDATA[START_DATE]]></prompt>
+						<tooltip><![CDATA[START_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="END_DATE">
+						<prompt><![CDATA[END_DATE]]></prompt>
+						<tooltip><![CDATA[END_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+				</binds>
 			</query>
 		</display>
 		<display id="null" type="" style="Table" enable="true">
@@ -8133,7 +8275,7 @@ FROM table((dbms_sqltune.select_workload_repository (
 		</display>
 	</display>
 	<display id="c2aaeb77-0183-1000-8043-c0a838012a96" type="" style="Table" enable="true">
-		<name><![CDATA[Masked Devops Advisor reports]]></name>
+		<name><![CDATA[Masked Devops Advisor Reports]]></name>
 		<description><![CDATA[]]></description>
 		<tooltip><![CDATA[]]></tooltip>
 		<drillclass><![CDATA[]]></drillclass>
@@ -8205,7 +8347,21 @@ order by execution_start desc]]></sql>
 			</CustomValues>
 			<query>
 				<sql><![CDATA[set echo off feedback on linesize 4000 long 1000000 trimspool on pagesize 0 heading off time off timing off serveroutput on feedback off
-select dbms_advisor.get_task_report(:TASK_NAME,'TEXT','ALL','ALL' ,'SYS') as report FROM	dual;]]></sql>
+select dbms_advisor.get_task_report(:TASK_NAME,'TEXT','ALL','ALL' ,:OWNER) as report FROM	dual;]]></sql>
+				<binds>
+					<bind id="TASK_NAME">
+						<prompt><![CDATA[TASK_NAME]]></prompt>
+						<tooltip><![CDATA[TASK_NAME]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="OWNER">
+						<prompt><![CDATA[OWNER]]></prompt>
+						<tooltip><![CDATA[OWNER]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+				</binds>
 			</query>
 		</display>
 		<display id="null" type="" style="Table" enable="true">
