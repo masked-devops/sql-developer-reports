@@ -1,4 +1,4 @@
-# Masked-Devops Session History
+# Masked-Devops- Session History
 The report is around two system views  [V$ACTIVE_SESSION_HISTORY](https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/V-ACTIVE_SESSION_HISTORY.html) (For the last 24hrs) and [DBA_HIST_ACTIVE_SESS_HISTORY](https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/DBA_HIST_ACTIVE_SESS_HISTORY.html).
 
 Starting the report without specifying any parameter (All NULLs checked) will give you the last 24hrs, interval=600 seconds, dim=wait_class.
@@ -10,9 +10,9 @@ In the report below the blue part of the histogram for the time slot 8:40-8:50 h
     start_date                  : 2022-09-25 06:00
     end_date                    : 2022-09-25 23:59
     
-<img src="img/Masked-DevopsSessionHistory/2022-09-25.last_day.prompt.png" width="300" height="150">
+<img src="img/Masked-Devops-SessionHistory/2022-09-25.last_day.prompt.png" width="300" height="150">
 
-![Report Example](img/Masked-DevopsSessionHistory/2022-09-25.last_day.png)
+![Report Example](img/Masked-Devops-SessionHistory/2022-09-25.last_day.png)
 
 ## Report Parameters
 
@@ -52,9 +52,9 @@ They are the start/end of the samples timestamp in the two system views, if null
     start_date                  : 2022-09-25 04:00
     end_date                    : 2022-09-25 23:59
 
-<img src="img/Masked-DevopsSessionHistory/2022-09-25.binds.prompt.png" width="300" height="150">
+<img src="img/Masked-Devops-SessionHistory/2022-09-25.binds.prompt.png" width="300" height="150">
 
-![start/end](img/Masked-DevopsSessionHistory/2022-09-25.png)
+![start/end](img/Masked-Devops-SessionHistory/2022-09-25.png)
 
 
 ### interval
@@ -64,9 +64,9 @@ The width of the histograms report, the time interval in seconds of the samples.
     end_date                    : 2022-09-25 09:00
     interval                    : 60
 
-<img src="img/Masked-DevopsSessionHistory/2022-09-25.int60.prompt.png" width="300" height="150">
+<img src="img/Masked-Devops-SessionHistory/2022-09-25.int60.prompt.png" width="300" height="150">
 
-![interval](img/Masked-DevopsSessionHistory/2022-09-25.int60.png)
+![interval](img/Masked-Devops-SessionHistory/2022-09-25.int60.png)
 
 
 ### dim
@@ -78,7 +78,7 @@ Wokload per container, check which container is causing more load. In RAC "insta
     interval                    : 600
     dim                         : con_id
 
-![dim](img/Masked-DevopsSessionHistory/2022-09-25.dim.con_id.png)
+![dim](img/Masked-Devops-SessionHistory/2022-09-25.dim.con_id.png)
 
 Wokload per sql_id, check which sql_id is causing more load
     
@@ -87,7 +87,7 @@ Wokload per sql_id, check which sql_id is causing more load
     interval                    : 600
     dim                         : sql_id
 
-![dim](img/Masked-DevopsSessionHistory/2022-09-25.dim.sql_id.png)
+![dim](img/Masked-Devops-SessionHistory/2022-09-25.dim.sql_id.png)
 
 Wokload per session_sid, check which session is causing more load
    
@@ -96,7 +96,7 @@ Wokload per session_sid, check which session is causing more load
     interval                    : 600
     dim                         : session_sid
 
-![dim](img/Masked-DevopsSessionHistory/2022-09-25.dim.session_sid.png)
+![dim](img/Masked-Devops-SessionHistory/2022-09-25.dim.session_sid.png)
 
 ## Filters
 Filters below can limit the rows of the report based on columns ov V$SESSION:
@@ -123,13 +123,13 @@ In the following examples dim=wait_class, the yellow part of the histogram at ti
     interval                    : 600
     dim                         : wait_class
     
-![child](img/Masked-DevopsSessionHistory/2022-09-25.child.png)
+![child](img/Masked-Devops-SessionHistory/2022-09-25.child.png)
 
 ## Report Parms
 
 List report parameters plus useful info about the instance and the slot selected.
 
-![child](img/Masked-DevopsSessionHistory/2022-09-25.child.ReportParms.png)
+![child](img/Masked-Devops-SessionHistory/2022-09-25.child.ReportParms.png)
     
 ## Top dim/event
 Counts of the samples grouped by 
@@ -150,14 +150,14 @@ Columns:
     LOAD_PCT_CON            Percent of the total load in the container, in the first line  125/243=51%
     LOAD_PCT_INST           Percent of the total load in the instance,  in the first line  125/417=29%  
 
-![child](img/Masked-DevopsSessionHistory/2022-09-25.child.TopDimEvent.png)
+![child](img/Masked-Devops-SessionHistory/2022-09-25.child.TopDimEvent.png)
 
 ## Sessions all
 Raw data for all sessions in the interval selected 
 
     slot(14:40-14:50)
 
-![child](img/Masked-DevopsSessionHistory/2022-09-25.child.SessionAll.png)
+![child](img/Masked-Devops-SessionHistory/2022-09-25.child.SessionAll.png)
 
 ## Sessions by dim
 Raw data for all sessions in the interval and dim selected 
@@ -165,7 +165,7 @@ Raw data for all sessions in the interval and dim selected
     slot(14:40-14:50)
     dim("Configuration")
 
-![child](img/Masked-DevopsSessionHistory/2022-09-25.child.SessionByDim.png)
+![child](img/Masked-Devops-SessionHistory/2022-09-25.child.SessionByDim.png)
 
 ## Top Sessions
 Counts of the samples grouped by: 
@@ -173,7 +173,7 @@ Counts of the samples grouped by:
     slot(14:40-14:50)
     sid/serial.
 
-![child](img/Masked-DevopsSessionHistory/2022-09-25.child.TopSessions.png)
+![child](img/Masked-Devops-SessionHistory/2022-09-25.child.TopSessions.png)
 
 ## Top Sessions by dim
 Counts of the samples grouped by: 
@@ -182,7 +182,7 @@ Counts of the samples grouped by:
     dim("Configuration")
     sid/serial.
 
-![child](img/Masked-DevopsSessionHistory/2022-09-25.child.TopSessionsByDim.png)
+![child](img/Masked-Devops-SessionHistory/2022-09-25.child.TopSessionsByDim.png)
 
 ## Top Sessions by dim/event
 Counts of the samples grouped by: 
@@ -192,7 +192,7 @@ Counts of the samples grouped by:
     event
     sid/serial.
 
-![child](img/Masked-DevopsSessionHistory/2022-09-25.child.TopSessionsByDimEvent.png)
+![child](img/Masked-Devops-SessionHistory/2022-09-25.child.TopSessionsByDimEvent.png)
 
 ## Top SQL
 Counts of the samples grouped by: 
@@ -200,7 +200,7 @@ Counts of the samples grouped by:
 slot(14:40-14:50)
     sql_id
 
-![child](img/Masked-DevopsSessionHistory/2022-09-25.child.TopSQL.png)
+![child](img/Masked-Devops-SessionHistory/2022-09-25.child.TopSQL.png)
 
 ## Top SQL by dim
 ## Top SQL by dim/event
@@ -216,7 +216,7 @@ Counts of the samples grouped by:
     sql_plan_hash_value
     sql_plan_line_id
     
-![child](img/Masked-DevopsSessionHistory/2022-09-25.child.TopPlanLine.png)
+![child](img/Masked-Devops-SessionHistory/2022-09-25.child.TopPlanLine.png)
 
 ## Top Plan Line by dim
 ## Top plan line/object
@@ -225,7 +225,7 @@ Counts of the samples grouped by:
 ## ASH text
 
 It creates the ASH report for the slot(14:40-14:50) 
-![child](img/Masked-DevopsSessionHistory/2022-09-25.child.ASHText.png)
+![child](img/Masked-Devops-SessionHistory/2022-09-25.child.ASHText.png)
 
 # Tips
 Samples from one session only, sid=71	serial#=10164: 
@@ -235,7 +235,7 @@ Samples from one session only, sid=71	serial#=10164:
     SESSION_SID                 : 71
     SESSION_SERIAL#             : 10164
 
-![Filter](img/Masked-DevopsSessionHistory/2022-09-25.SID.png)
+![Filter](img/Masked-Devops-SessionHistory/2022-09-25.SID.png)
 
 
 Trace one session sql_id executions, sid=71	serial#=10164   sql_id=budtrjayjnvw3: 
