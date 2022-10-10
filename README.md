@@ -25,47 +25,70 @@ The database user needs the select_catalog_role privilege to run the reports.
 
 * Masked-Devops Session History
   
-    Workload report on V$ACTIVE_SESSION_HISTORY and DBA_HIST_ACTIVE_SESS_HISTORY
+    Database workload report on V$ACTIVE_SESSION_HISTORY and DBA_HIST_ACTIVE_SESS_HISTORY with details of all sessions samples
     
     Link to the documentaton [Masked-Devops Session History](doc/Masked-Devops-Session-History.md)
     <img src="doc/img/Masked-Devops-SessionHistory/2022-09-25.png" width="600" height="300">
 
 * Masked-Devops SQL History
   
-    Workload report on V$ACTIVE_SESSION_HISTORY and DBA_HIST_ACTIVE_SESS_HISTORY 
+    History of the sql execution plan, load plan baseline, load sql profile, AWR reports 
+    
     <img src="doc/img/Masked-Devops-SessionHistory/2022-09-25.png" width="600" height="300">
 
 * [Masked-Devops AWR reports](doc/Masked-Devops-AWR-Reports.md)
     
     Create AWR/ASH/ADDM reports files.
     Link to the documentaton 
-    [Masked-Devops Session History](doc/Masked-Devops-Session-History.md)
+    [Masked-Devops Session History](doc/Masked-Devops-AWR-Reports.md)
+    
     <img src="doc/img/Masked-Devops-AWRreports/Masked-Devops.AWR.Reports3.png" width="600" height="300">
 
 * Masked-Devops AWR reports Time Model
     
-    Time model chart with View AWR/ASH/ADDM reports.
+    Time model chart with View of the AWR/ASH/ADDM reports.
+    
     <img src="doc/img/Masked-Devops-AWRreportsTimeModel/Masked-Devops.AWR.Reports.TimeModel.png" width="600" height="300">
 
 * Masked Devops Session Browser
-    Browse Oracle sessions 
+
+    Browse Oracle sessions details
+    
+    <img src="doc/img/Masked-Devops-SessionBrowser/Masked-Devops.AWR.SessionBrowser.png" width="600" height="300">
+
 * Masked Devops CPU
   
-    Workload report on V$ACTIVE_SESSION_HISTORY and DBA_HIST_ACTIVE_SESS_HISTORY 
-    <img src="doc/img/Masked-Devops-SessionHistory/2022-09-25.png" width="600" height="300">
+    Operating system and Database CPU reports
+    
+    <img src="doc/img/Masked-Devops-CPU/Masked-Devops.AWR.CPU.png" width="600" height="300">
 
 * Masked Devops I/O
   
-    Workload report on V$ACTIVE_SESSION_HISTORY and DBA_HIST_ACTIVE_SESS_HISTORY 
-    <img src="doc/img/Masked-Devops-SessionHistory/2022-09-25.png" width="600" height="300">
+    Database I/O reports, IOPS, Throughput
+    
+    <img src="doc/img/Masked-Devops-IO/Masked-Devops.AWR.IO.png" width="600" height="300">
 
 * Masked-Devops Read Alert Log
   
-    Workload report on V$ACTIVE_SESSION_HISTORY and DBA_HIST_ACTIVE_SESS_HISTORY 
-    <img src="doc/img/Masked-Devops-SessionHistory/2022-09-25.png" width="600" height="300">
+    Read the alert log and read the trace files content
+    
+    <img src="doc/img/Masked-Devops-ReadAlertLog/Masked-Devops.AWR.ReadAlertLog.png" width="600" height="300">
 
 
 * Masked-Devops Read Trace File
 
+    Read the trace files in Diag
+    
+    <img src="doc/img/Masked-Devops-ReadTraceFile/Masked-Devops.AWR.ReadTraceFile.png" width="600" height="300">
+
 * Masked Devops AWR Sysstat
 
+    Chart reports on the sysstat statistics
+    
+    <img src="doc/img/Masked-Devops-AWRSysstat/Masked-Devops.AWR.Sysstat.png" width="600" height="300">
+
+* Masked Devops Advisor reports
+    
+    Read the Advisors reports
+    
+    <img src="doc/img/Masked-Devops-AdvisorReports/Masked-Devops.AWR.AdvisorReports.png" width="600" height="300">
