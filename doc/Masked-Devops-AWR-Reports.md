@@ -2,16 +2,19 @@
 
 Chose the directory where the reports will be created
 
-![child](img/Masked-Devops-AWRreports/Masked-Devops.AWR.Reports.prompt.png)
+<img src="img/Masked-Devops-AWRreports/Masked-Devops.AWR.Reports.prompt.png" width="300" height="150">
 
 Chose the start snapshot
-![child](img/Masked-Devops-AWRreports/Masked-Devops.AWR.Reports1.png)
+
+<img src="img/Masked-Devops-AWRreports/Masked-Devops.AWR.Reports1.png" width="600" height="300">
 
 Chose the end snapshot
-![child](img/Masked-Devops-AWRreports/Masked-Devops.AWR.Reports2.png)
+
+<img src="img/Masked-Devops-AWRreports/Masked-Devops.AWR.Reports2.png" width="600" height="300">
 
 Chose the child, reports will be genetrated automatically
-![child](img/Masked-Devops-AWRreports/Masked-Devops.AWR.Reports3.png)
+
+<img src="img/Masked-Devops-AWRreports/Masked-Devops.AWR.Reports3.png" width="600" height="300">
 
 **Info**                         *Snapshot interval details*
 
@@ -39,7 +42,10 @@ Chose the child, reports will be genetrated automatically
 
 **ADDM + ASH + AWR RAC All**     *ADDM + ASH + AWR RAC reports for every snapshot in the interval*
 
-![child](img/Masked-Devops-AWRreports/Masked-Devops.AWR.Reports.child.ADDMASHAWRALL.png)
+<img src="img/Masked-Devops-AWRreports/Masked-Devops.AWR.Reports.child.ADDMASHAWRALL.png" width="500" height="150">
 
-![child](img/Masked-Devops-AWRreports/Masked-Devops.AWR.Reports.Files.png)
+
+Files generated, createe_reports.sql is the script that created the reports:
+
+<img src="img/Masked-Devops-AWRreports/Masked-Devops.AWR.Reports.Files.png" width="500" height="150">
 
