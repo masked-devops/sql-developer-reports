@@ -6,8 +6,8 @@
 	<description><![CDATA[ ]]></description>
 		<display id="9d63a4bf-0183-1000-8001-c0a83801a02f" type="" style="Chart" enable="true">
 		<name><![CDATA[Masked Devops AWR Reports + Time Model]]></name>
-		<description><![CDATA[View Time Model graph, AWR,ASH,ADDM report files]]></description>
-		<tooltip><![CDATA[View Time Model graph, AWR,ASH,ADDM report files]]></tooltip>
+		<description><![CDATA[View Time Model graph, AWR,ASH,ADDM reports]]></description>
+		<tooltip><![CDATA[View Time Model graph, AWR,ASH,ADDM reports]]></tooltip>
 		<drillclass><![CDATA[]]></drillclass>
 		<CustomValues>
 			<Y1AXIS_TITLE_TEXT><![CDATA[Hours]]></Y1AXIS_TITLE_TEXT>
@@ -117,13 +117,13 @@ order by end_interval_time asc]]></sql>
 				<bind id="P_START_DATE">
 					<prompt><![CDATA[P_START_DATE]]></prompt>
 					<tooltip><![CDATA[yyyy-mm-dd hh24:mi]]></tooltip>
-					<value><![CDATA[2022-09-24 04:00]]></value>
+					<value><![CDATA[NULL_VALUE]]></value>
 					<bracket><![CDATA[null]]></bracket>
 				</bind>
 				<bind id="P_END_DATE">
 					<prompt><![CDATA[P_END_DATE]]></prompt>
 					<tooltip><![CDATA[yyyy-mm-dd hh24:mi]]></tooltip>
-					<value><![CDATA[2022-09-25 22:00]]></value>
+					<value><![CDATA[NULL_VALUE]]></value>
 					<bracket><![CDATA[null]]></bracket>
 				</bind>
 				<bind id="P_INST_ID">
@@ -134,7 +134,7 @@ order by end_interval_time asc]]></sql>
 				</bind>
 			</binds>
 		</query>
-		<display id="" type="" style="Table" enable="true">
+		<display id="null" type="" style="Table" enable="true">
 			<name><![CDATA[Info]]></name>
 			<description><![CDATA[]]></description>
 			<tooltip><![CDATA[]]></tooltip>
@@ -160,17 +160,9 @@ from (
                 left outer join dba_hist_database_instance di on s.dbid = di.dbid and s.instance_number = di.instance_number and s.startup_time = di.startup_time
 	)
 where  end_interval_time=  to_char(:END_INTERVAL_TIME,'yyyy-mm-dd hh24:mi:ss')]]></sql>
-				<binds>
-					<bind id="END_INTERVAL_TIME">
-						<prompt><![CDATA[END_INTERVAL_TIME]]></prompt>
-						<tooltip><![CDATA[END_INTERVAL_TIME]]></tooltip>
-						<value><![CDATA[NULL_VALUE]]></value>
-						<bracket><![CDATA[null]]></bracket>
-					</bind>
-				</binds>
 			</query>
 		</display>
-		<display id="" type="" style="Table" enable="true">
+		<display id="null" type="" style="Table" enable="true">
 			<name><![CDATA[AWR text]]></name>
 			<description><![CDATA[]]></description>
 			<tooltip><![CDATA[]]></tooltip>
@@ -203,7 +195,7 @@ union all
 select output from snaps,table(dbms_workload_repository.awr_report_text(dbid,instance_number,snap_id_prev,snap_id))]]></sql>
 			</query>
 		</display>
-		<display id="" type="" style="plsql-dbms_output" enable="true">
+		<display id="null" type="" style="plsql-dbms_output" enable="true">
 			<name><![CDATA[AWR html]]></name>
 			<description><![CDATA[]]></description>
 			<tooltip><![CDATA[]]></tooltip>
@@ -244,7 +236,7 @@ begin
 end;]]></sql>
 			</query>
 		</display>
-		<display id="" type="" style="Table" enable="true">
+		<display id="null" type="" style="Table" enable="true">
 			<name><![CDATA[AWR text global]]></name>
 			<description><![CDATA[]]></description>
 			<tooltip><![CDATA[]]></tooltip>
@@ -277,7 +269,7 @@ union all
 select output from snaps,table(dbms_workload_repository.awr_global_report_text(dbid,'',snap_id_prev ,snap_id))]]></sql>
 			</query>
 		</display>
-		<display id="" type="" style="Table" enable="true">
+		<display id="null" type="" style="Table" enable="true">
 			<name><![CDATA[AWR html global]]></name>
 			<description><![CDATA[]]></description>
 			<tooltip><![CDATA[]]></tooltip>
@@ -310,7 +302,7 @@ union all
 select output from snaps,table(dbms_workload_repository.awr_global_report_html(dbid,'',snap_id_prev ,snap_id))]]></sql>
 			</query>
 		</display>
-		<display id="" type="" style="Table" enable="true">
+		<display id="null" type="" style="Table" enable="true">
 			<name><![CDATA[ASH text]]></name>
 			<description><![CDATA[]]></description>
 			<tooltip><![CDATA[]]></tooltip>
@@ -343,7 +335,7 @@ union all
 select output from snaps,table(dbms_workload_repository.ash_report_text(dbid,instance_number,begin_time,end_time))]]></sql>
 			</query>
 		</display>
-		<display id="" type="" style="Table" enable="true">
+		<display id="null" type="" style="Table" enable="true">
 			<name><![CDATA[ASH html]]></name>
 			<description><![CDATA[]]></description>
 			<tooltip><![CDATA[]]></tooltip>
@@ -376,7 +368,7 @@ union all
 select output from snaps,table(dbms_workload_repository.ash_report_html(dbid,instance_number,begin_time,end_time))]]></sql>
 			</query>
 		</display>
-		<display id="" type="" style="Table" enable="true">
+		<display id="null" type="" style="Table" enable="true">
 			<name><![CDATA[ASH text global]]></name>
 			<description><![CDATA[]]></description>
 			<tooltip><![CDATA[]]></tooltip>
@@ -409,7 +401,7 @@ union all
 select output from snaps,table(dbms_workload_repository.ash_global_report_text(dbid,'',begin_time,end_time))]]></sql>
 			</query>
 		</display>
-		<display id="" type="" style="Table" enable="true">
+		<display id="null" type="" style="Table" enable="true">
 			<name><![CDATA[ASH html global]]></name>
 			<description><![CDATA[]]></description>
 			<tooltip><![CDATA[]]></tooltip>
@@ -442,7 +434,7 @@ union all
 select output from snaps,table(dbms_workload_repository.ash_global_report_html(dbid,'',begin_time,end_time))]]></sql>
 			</query>
 		</display>
-		<display id="" type="" style="Script" enable="true">
+		<display id="null" type="" style="Script" enable="true">
 			<name><![CDATA[ADDM text]]></name>
 			<description><![CDATA[]]></description>
 			<tooltip><![CDATA[]]></tooltip>
@@ -475,7 +467,7 @@ union all
 select dbms_advisor.get_task_report('ADDM:'||dbid||'_'||instance_number||'_'||snap_id,'TEXT','ALL','ALL','SYS') as report  FROM	   snaps,dual;]]></sql>
 			</query>
 		</display>
-		<display id="" type="" style="Table" enable="true">
+		<display id="null" type="" style="Table" enable="true">
 			<name><![CDATA[ADDM findings]]></name>
 			<description><![CDATA[]]></description>
 			<tooltip><![CDATA[]]></tooltip>
@@ -6166,294 +6158,6 @@ select output from parms,table(dbms_workload_repository.ash_report_text(dbid,ins
 			</query>
 		</display>
 	</display>
-	<display id="bf0b005e-0183-1000-8013-c0a838012a96" type="" style="Table" enable="true">
-		<name><![CDATA[Masked Devops I/O]]></name>
-		<description><![CDATA[]]></description>
-		<tooltip><![CDATA[Block RW response time,IOPS, Throughput, Redologs I/O]]></tooltip>
-		<drillclass><![CDATA[]]></drillclass>
-		<CustomValues>
-			<TYPE><![CDATA[horizontal]]></TYPE>
-		</CustomValues>
-		<query>
-			<sql><![CDATA[-- -----------------------------------------------------------------------------
--- Author      : Masked DevOps
--- Date        : Jan 2012
--- Version     : 0.1
---
--- SQL Developer report for database administration 
--- Copyright (C) 2022  Emanuele Moccia
--- masked.devops@yahoo.com
--- 
--- This program is free software: you can redistribute it and/or modify
--- it under the terms of the GNU General Public License as published by
--- the Free Software Foundation, either version 3 of the License, or
--- any later version.
--- 
--- This program is distributed in the hope that it will be useful,
--- but WITHOUT ANY WARRANTY; without even the implied warranty of
--- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--- GNU General Public License for more details.
--- 
--- You should have received a copy of the GNU General Public License
--- along with this program.  If not, see <https://www.gnu.org/licenses/>.
--- -----------------------------------------------------------------------------
-with
-parms as (select 
-			 nvl(to_date(:P_START_DATE,'yyyy-mm-dd hh24:mi'),sysdate-1)  start_date
-			,nvl(to_date(:P_END_DATE,'yyyy-mm-dd hh24:mi'),sysdate)	     end_date
-			,nvl(:P_INST_ID,sys_context('USERENV', 'INSTANCE'))          instance_number
-		  from dual)
-select 
-     end_interval_time
-    ,rpad(to_char(round(max(decode(event_name,'db file scattered read',avg_wait_ms,null)),2),'99990.990'),8,' ')          ||lpad('('||max(decode(event_name,'db file scattered read',total_waits,null))||')',15,' ')          db_file_scat_read_20_ms         --'control file parallel write',      15_ms
-    ,rpad(to_char(round(max(decode(event_name,'db file sequential read',avg_wait_ms,null)),2),'99990.990'),8,' ')         ||lpad('('||max(decode(event_name,'db file sequential read',total_waits,null))||')',15,' ')         db_file_seq_read_20_ms          --'control file sequential read',     20_ms
-    ,rpad(to_char(round(max(decode(event_name,'db file parallel read',avg_wait_ms,null)),2),'99990.990'),8,' ')           ||lpad('('||max(decode(event_name,'db file parallel read',total_waits,null))||')',15,' ')           db_file_paral_read_20_ms        --'db file parallel read',            20_ms
-    ,rpad(to_char(round(max(decode(event_name,'direct path read',avg_wait_ms,null)),2),'99990.990'),8,' ')                ||lpad('('||max(decode(event_name,'direct path read',total_waits,null))||')',15,' ')                drct_path_read_Read_20_ms       --'db file scattered read',           20_ms
-    ,rpad(to_char(round(max(decode(event_name,'direct path read temp',avg_wait_ms,null)),2),'99990.990'),8,' ')           ||lpad('('||max(decode(event_name,'direct path read temp',total_waits,null))||')',15,' ')           drct_path_read_temp_20_ms       --'db file sequential read',          20_ms
-    ,rpad(to_char(round(max(decode(event_name,'direct path write',avg_wait_ms,null)),2),'99990.990'),8,' ')               ||lpad('('||max(decode(event_name,'direct path write',total_waits,null))||')',15,' ')               drct_path_write_15_ms           --'direct path read Read',            20_ms
-    ,rpad(to_char(round(max(decode(event_name,'direct path write temp',avg_wait_ms,null)),2),'99990.990'),8,' ')          ||lpad('('||max(decode(event_name,'direct path write temp',total_waits,null))||')',15,' ')          drct_path_write_temp_15_ms      --'direct path read temp',            20_ms
-    ,rpad(to_char(round(max(decode(event_name,'log file parallel write',avg_wait_ms,null)),2),'99990.990'),8,' ')         ||lpad('('||max(decode(event_name,'log file parallel write',total_waits,null))||')',15,' ')         log_file_paral_write_15_ms      --'direct path write',                15_ms
-    ,rpad(to_char(round(max(decode(event_name,'control file parallel write',avg_wait_ms,null)),2),'99990.990'),8,' ')     ||lpad('('||max(decode(event_name,'control file parallel write',total_waits,null))||')',15,' ')     ctrl_file_parallel_write_15_ms  --'direct path write temp',           15_ms
-    ,rpad(to_char(round(max(decode(event_name,'control file sequential read',avg_wait_ms,null)),2),'99990.990'),8,' ')    ||lpad('('||max(decode(event_name,'control file sequential read',total_waits,null))||')',15,' ')    ctrl_file_seq_read_20_ms        --'log file parallel write',          15_ms
-    ,rpad(to_char(round(max(decode(event_name,'cell smart table scan',avg_wait_ms,null)),2),'99990.990'),8,' ')           ||lpad('('||max(decode(event_name,'cell smart table scan',total_waits,null))||')',15,' ')           cell_smart_table_scan_1_ms      --'cell smart table scan',            1_ms
-    ,rpad(to_char(round(max(decode(event_name,'cell single block physical read',avg_wait_ms,null)),2),'99990.990'),8,' ') ||lpad('('||max(decode(event_name,'cell single block physical read',total_waits,null))||')',15,' ') cell_sngl_blk_phys_read_1_ms    --'cell single block physical read    1_ms
-    ,rpad(to_char(round(max(decode(event_name,'cell multiblock physical read',avg_wait_ms,null)),2),'99990.990'),8,' ')   ||lpad('('||max(decode(event_name,'cell multiblock physical read',total_waits,null))||')',15,' ')   cell_mltblk_phys_read_6_ms      --'cell multiblock physical read',    6_ms
-    ,max(parms.instance_number)               inst_id
-    ,max(start_date)                          start_date
-    ,max(end_date)                            end_date
-from (select end_interval_time
-            ,event_name
-            ,wait_class
-            ,(total_waits - total_waits_prev) total_waits
-            ,(time_waited_micro - time_waited_micro_prev)/1000 time_waited_ms
-            ,round(case when (total_waits - total_waits_prev) > 0
-                  then (time_waited_micro - time_waited_micro_prev)/((total_waits - total_waits_prev))/1000
-                  else 0
-                  end,2)  avg_wait_ms
-      from (
-            select
-               to_char(end_interval_time,'yyyy-mm-dd hh24 day') end_interval_time
-              ,event_name
-              ,lag(event_name) over (order by event_name,end_interval_time) event_name_prev
-              ,wait_class
-              ,total_waits
-              ,lag(total_waits) over (order by event_name,end_interval_time) total_waits_prev
-              ,time_waited_micro
-              ,lag(time_waited_micro) over (order by event_name,end_interval_time) time_waited_micro_prev
-            from dba_hist_system_event se join dba_hist_snapshot snap on se.dbid = snap.dbid  and se.instance_number = snap.instance_number  and se.snap_id = snap.snap_id
-                cross join parms
-            where 1=1
-                and snap.end_interval_time between parms.start_date and parms.end_date
-                and snap.instance_number = parms.instance_number
-            ) se1
-      where event_name = event_name_prev
-      order by end_interval_time desc, time_waited_ms desc
-    ) se2, parms
-group by end_interval_time
-order by end_interval_time asc]]></sql>
-			<binds>
-				<bind id="P_START_DATE">
-					<prompt><![CDATA[P_START_DATE]]></prompt>
-					<tooltip><![CDATA[yyyy-mm-dd hh24:mi]]></tooltip>
-					<value><![CDATA[2022-09-25 15:00]]></value>
-					<bracket><![CDATA[null]]></bracket>
-				</bind>
-				<bind id="P_END_DATE">
-					<prompt><![CDATA[P_END_DATE]]></prompt>
-					<tooltip><![CDATA[yyyy-mm-dd hh24:mi]]></tooltip>
-					<value><![CDATA[2022-09-26 :00:00]]></value>
-					<bracket><![CDATA[null]]></bracket>
-				</bind>
-				<bind id="P_INST_ID">
-					<prompt><![CDATA[P_INST_ID]]></prompt>
-					<tooltip><![CDATA[P_INST_ID]]></tooltip>
-					<value><![CDATA[NULL_VALUE]]></value>
-					<bracket><![CDATA[null]]></bracket>
-				</bind>
-			</binds>
-		</query>
-		<display id="null" type="" style="Chart" enable="true">
-			<name><![CDATA[IOPS]]></name>
-			<description><![CDATA[IOPS - (Input/Output Operations Per Second) -  This is the sum of Physical Read Total IO Requests and Physical Write Total IO Requests ]]></description>
-			<tooltip><![CDATA[]]></tooltip>
-			<drillclass><![CDATA[]]></drillclass>
-			<CustomValues>
-				<PLOT_HGRID_WIDTH><![CDATA[THINNER]]></PLOT_HGRID_WIDTH>
-				<Y1AXIS_SCALE_INCREMENT><![CDATA[30.0]]></Y1AXIS_SCALE_INCREMENT>
-				<Y2AXIS_SCALE_MAXIMUM><![CDATA[80.0]]></Y2AXIS_SCALE_MAXIMUM>
-				<Y1AXIS_LINE_WIDTH><![CDATA[THINNEST]]></Y1AXIS_LINE_WIDTH>
-				<Y1AXIS_TITLE_ALIGNMENT><![CDATA[CENTER]]></Y1AXIS_TITLE_ALIGNMENT>
-				<LEGEND_LOCATION><![CDATA[AUTOMATIC]]></LEGEND_LOCATION>
-				<LEGEND_ALIGNMENT><![CDATA[LEFT]]></LEGEND_ALIGNMENT>
-				<XAXIS_LINE_WIDTH><![CDATA[THINNEST]]></XAXIS_LINE_WIDTH>
-				<Y1AXIS_SCALE_MAXIMUM><![CDATA[210.0]]></Y1AXIS_SCALE_MAXIMUM>
-				<XAXIS_TITLE_ALIGNMENT><![CDATA[CENTER]]></XAXIS_TITLE_ALIGNMENT>
-				<XAXIS_TICK_LABEL_ROTATE><![CDATA[HORIZONTAL]]></XAXIS_TICK_LABEL_ROTATE>
-				<Y1AXIS_LOGARITHMIC_BASE><![CDATA[BASE_10]]></Y1AXIS_LOGARITHMIC_BASE>
-				<TYPE><![CDATA[BAR_VERT_STACK]]></TYPE>
-				<GRID_WIDTH><![CDATA[THINNER]]></GRID_WIDTH>
-				<PLOT_DATALABELS_BAR_POSITION><![CDATA[ABOVE]]></PLOT_DATALABELS_BAR_POSITION>
-				<FOOTNOTE_ALIGNMENT><![CDATA[LEFT]]></FOOTNOTE_ALIGNMENT>
-				<XAXIS_TICK_LABEL_SKIP_MODE><![CDATA[AUTOMATIC]]></XAXIS_TICK_LABEL_SKIP_MODE>
-				<Y2AXIS_LOGARITHMIC_BASE><![CDATA[BASE_10]]></Y2AXIS_LOGARITHMIC_BASE>
-				<STYLE><![CDATA[Default]]></STYLE>
-				<TITLE_ALIGNMENT><![CDATA[LEFT]]></TITLE_ALIGNMENT>
-				<Y2AXIS_TICK_LABEL_ROTATE><![CDATA[HORIZONTAL]]></Y2AXIS_TICK_LABEL_ROTATE>
-				<Y2AXIS_SCALE_MINIMUM><![CDATA[10.0]]></Y2AXIS_SCALE_MINIMUM>
-				<Y2AXIS_LINE_WIDTH><![CDATA[THINNEST]]></Y2AXIS_LINE_WIDTH>
-				<Y1AXIS_TICK_LABEL_ROTATE><![CDATA[HORIZONTAL]]></Y1AXIS_TICK_LABEL_ROTATE>
-				<Y2AXIS_SCALE_INCREMENT><![CDATA[20.0]]></Y2AXIS_SCALE_INCREMENT>
-				<PLOT_VGRID_WIDTH><![CDATA[THINNER]]></PLOT_VGRID_WIDTH>
-				<Y2AXIS_TITLE_ALIGNMENT><![CDATA[CENTER]]></Y2AXIS_TITLE_ALIGNMENT>
-				<SUBTITLE_ALIGNMENT><![CDATA[LEFT]]></SUBTITLE_ALIGNMENT>
-			</CustomValues>
-			<query>
-				<sql><![CDATA[select
-     end_interval_time
-    ,metric_name
-    ,average/case when metric_unit = 'Milliseconds' then 1000 when metric_unit = 'CentiSeconds Per Second' then 100 else 1 end average
-from dba_hist_sysmetric_summary stat 
-    join dba_hist_snapshot snap on stat.dbid = snap.dbid and stat.instance_number = snap.instance_number and stat.snap_id = snap.snap_id
-where 1=1 
-    and snap.end_interval_time between :START_DATE and :END_DATE
-    and stat.metric_name in ('Physical Read IO Requests Per Sec', 'Physical Write Total IO Requests Per Sec')
-order by end_interval_time]]></sql>
-				<binds>
-					<bind id="START_DATE">
-						<prompt><![CDATA[START_DATE]]></prompt>
-						<tooltip><![CDATA[START_DATE]]></tooltip>
-						<value><![CDATA[NULL_VALUE]]></value>
-						<bracket><![CDATA[null]]></bracket>
-					</bind>
-					<bind id="END_DATE">
-						<prompt><![CDATA[END_DATE]]></prompt>
-						<tooltip><![CDATA[END_DATE]]></tooltip>
-						<value><![CDATA[NULL_VALUE]]></value>
-						<bracket><![CDATA[null]]></bracket>
-					</bind>
-				</binds>
-			</query>
-		</display>
-		<display id="null" type="" style="Chart" enable="true">
-			<name><![CDATA[Throughput]]></name>
-			<description><![CDATA[]]></description>
-			<tooltip><![CDATA[IOPS, Throughput, Redolog stats]]></tooltip>
-			<drillclass><![CDATA[]]></drillclass>
-			<CustomValues>
-				<PLOT_HGRID_WIDTH><![CDATA[THINNER]]></PLOT_HGRID_WIDTH>
-				<Y1AXIS_SCALE_INCREMENT><![CDATA[30.0]]></Y1AXIS_SCALE_INCREMENT>
-				<Y2AXIS_SCALE_MAXIMUM><![CDATA[80.0]]></Y2AXIS_SCALE_MAXIMUM>
-				<Y1AXIS_LINE_WIDTH><![CDATA[THINNEST]]></Y1AXIS_LINE_WIDTH>
-				<Y1AXIS_TITLE_ALIGNMENT><![CDATA[CENTER]]></Y1AXIS_TITLE_ALIGNMENT>
-				<LEGEND_LOCATION><![CDATA[AUTOMATIC]]></LEGEND_LOCATION>
-				<LEGEND_ALIGNMENT><![CDATA[LEFT]]></LEGEND_ALIGNMENT>
-				<XAXIS_LINE_WIDTH><![CDATA[THINNEST]]></XAXIS_LINE_WIDTH>
-				<Y1AXIS_SCALE_MAXIMUM><![CDATA[210.0]]></Y1AXIS_SCALE_MAXIMUM>
-				<XAXIS_TITLE_ALIGNMENT><![CDATA[CENTER]]></XAXIS_TITLE_ALIGNMENT>
-				<XAXIS_TICK_LABEL_ROTATE><![CDATA[HORIZONTAL]]></XAXIS_TICK_LABEL_ROTATE>
-				<Y1AXIS_LOGARITHMIC_BASE><![CDATA[BASE_10]]></Y1AXIS_LOGARITHMIC_BASE>
-				<TYPE><![CDATA[BAR_VERT_STACK]]></TYPE>
-				<GRID_WIDTH><![CDATA[THINNER]]></GRID_WIDTH>
-				<PLOT_DATALABELS_BAR_POSITION><![CDATA[ABOVE]]></PLOT_DATALABELS_BAR_POSITION>
-				<FOOTNOTE_ALIGNMENT><![CDATA[LEFT]]></FOOTNOTE_ALIGNMENT>
-				<XAXIS_TICK_LABEL_SKIP_MODE><![CDATA[AUTOMATIC]]></XAXIS_TICK_LABEL_SKIP_MODE>
-				<Y2AXIS_LOGARITHMIC_BASE><![CDATA[BASE_10]]></Y2AXIS_LOGARITHMIC_BASE>
-				<STYLE><![CDATA[Default]]></STYLE>
-				<TITLE_ALIGNMENT><![CDATA[LEFT]]></TITLE_ALIGNMENT>
-				<Y2AXIS_TICK_LABEL_ROTATE><![CDATA[HORIZONTAL]]></Y2AXIS_TICK_LABEL_ROTATE>
-				<Y2AXIS_SCALE_MINIMUM><![CDATA[10.0]]></Y2AXIS_SCALE_MINIMUM>
-				<Y2AXIS_LINE_WIDTH><![CDATA[THINNEST]]></Y2AXIS_LINE_WIDTH>
-				<Y1AXIS_TICK_LABEL_ROTATE><![CDATA[HORIZONTAL]]></Y1AXIS_TICK_LABEL_ROTATE>
-				<Y2AXIS_SCALE_INCREMENT><![CDATA[20.0]]></Y2AXIS_SCALE_INCREMENT>
-				<PLOT_VGRID_WIDTH><![CDATA[THINNER]]></PLOT_VGRID_WIDTH>
-				<Y2AXIS_TITLE_ALIGNMENT><![CDATA[CENTER]]></Y2AXIS_TITLE_ALIGNMENT>
-				<SUBTITLE_ALIGNMENT><![CDATA[LEFT]]></SUBTITLE_ALIGNMENT>
-			</CustomValues>
-			<query>
-				<sql><![CDATA[select
-     end_interval_time
-    ,metric_name
-    ,average/case when metric_unit = 'Milliseconds' then 1000 when metric_unit = 'CentiSeconds Per Second' then 100 else 1 end average
-from dba_hist_sysmetric_summary stat 
-    join dba_hist_snapshot snap on stat.dbid = snap.dbid and stat.instance_number = snap.instance_number and stat.snap_id = snap.snap_id
-where 1=1 
-    and snap.end_interval_time between :START_DATE and :END_DATE
-    and stat.metric_name in ('Physical Read Total Bytes Per Sec', 'Physical Write Total Bytes Per Sec')
-order by end_interval_time]]></sql>
-				<binds>
-					<bind id="START_DATE">
-						<prompt><![CDATA[START_DATE]]></prompt>
-						<tooltip><![CDATA[START_DATE]]></tooltip>
-						<value><![CDATA[NULL_VALUE]]></value>
-						<bracket><![CDATA[null]]></bracket>
-					</bind>
-					<bind id="END_DATE">
-						<prompt><![CDATA[END_DATE]]></prompt>
-						<tooltip><![CDATA[END_DATE]]></tooltip>
-						<value><![CDATA[NULL_VALUE]]></value>
-						<bracket><![CDATA[null]]></bracket>
-					</bind>
-				</binds>
-			</query>
-		</display>
-		<display id="null" type="" style="Table" enable="true">
-			<name><![CDATA[System Statistics redologs]]></name>
-			<description><![CDATA[]]></description>
-			<tooltip><![CDATA[]]></tooltip>
-			<drillclass><![CDATA[]]></drillclass>
-			<CustomValues>
-				<TYPE><![CDATA[horizontal]]></TYPE>
-			</CustomValues>
-			<query>
-				<sql><![CDATA[select to_char(end_interval_time,'yyyy-mm-dd hh24:mi:ss day')                       end_interval_time
-      --,instance_number
-      ,round((redo_write_time*10)/redo_writes,2)                                    avg_write_time_ms
-      ,user_commits                                     
-      ,trunc(redo_write_time*10/1000)                                               redo_write_time_tot_sec 
-      ,round((redo_blocks_written*(select max(blocksize) from v$log)/1024/1024))    redo_blocks_written_mb
-      ,round(redo_size/1024/1024)                                                   redo_size_mb
-      ,redo_writes
-      ,round((redo_blocks_written*(select max(blocksize) from v$log)/1024)/redo_writes) avg_block_written_kb
-from (select         
-           end_interval_time
-          ,instance_number
-          ,max(decode(stat_name,'redo blocks written',value,null))               redo_blocks_written
-          ,max(decode(stat_name,'redo buffer allocation retries',value,null))    redo_buffer_allocation_retries
-          ,max(decode(stat_name,'redo entries',value,null))                      redo_entries
-          ,max(decode(stat_name,'redo log space requests',value,null))           redo_log_space_requests
-          ,max(decode(stat_name,'redo log space wait time',value,null))          redo_log_space_wait_time
-          ,max(decode(stat_name,'redo log switch interrupts',value,null))        redo_log_switch_interrupts
-          ,max(decode(stat_name,'redo ordering marks',value,null))               redo_ordering_marks
-          ,max(decode(stat_name,'redo write time',value,null))                   redo_write_time
-          ,max(decode(stat_name,'redo writes',value,null))                       redo_writes
-          ,max(decode(stat_name,'redo synch writes',value,null))                 redo_synch_writes
-          ,max(decode(stat_name,'redo synch time',value,null))                   redo_synch_time
-          ,max(decode(stat_name,'redo size',value,null))                         redo_size
-          ,max(decode(stat_name,'redo wastage',value,null))                      redo_wastage
-          ,max(decode(stat_name,'user commits',value,null))                      user_commits
-      from (select instance_number,end_interval_time,stat_name,(value - value_prev)  value
-                   ,trunc(((value - value_prev))/3600,2)             per_second
-            from (
-                  select end_interval_time
-                    ,stat.instance_number
-                    ,stat_name
-                    ,lag(stat_name) over (order by stat.instance_number,stat_name,end_interval_time)     stat_name_prev
-                    ,lag(value)     over (order by stat.instance_number,stat_name,end_interval_time)     value_prev
-                    ,lag(stat.instance_number)     over (order by stat.instance_number,stat_name,end_interval_time)     instance_number_prev
-                    ,value
-                  from dba_hist_sysstat stat join dba_hist_snapshot snap on stat.dbid = snap.dbid and stat.instance_number = snap.instance_number and stat.snap_id = snap.snap_id
-                  where 1=1 
-                    and snap.end_interval_time between :START_DATE and :END_DATE
-            )
-            where stat_name=stat_name_prev and instance_number = instance_number_prev
-      )
-      group by instance_number,end_interval_time
-      order by end_interval_time,instance_number 
-)
-order by end_interval_time,instance_number]]></sql>
-			</query>
-		</display>
-	</display>
 	<display id="bf1da0e3-0183-1000-8023-c0a838012a96" type="" style="Table" enable="true">
 		<name><![CDATA[Masked-Devops SQL History]]></name>
 		<description><![CDATA[]]></description>
@@ -8458,7 +8162,1012 @@ where task_id = :TASK_ID]]></sql>
 			</CustomValues>
 			<query>
 				<sql><![CDATA[select *
-from dba_advisor_commands]]></sql>
+from dba_advisor_commands
+where task_id = :TASK_ID]]></sql>
+			</query>
+		</display>
+		<display id="null" type="" style="Table" enable="true">
+			<name><![CDATA[dba_advisor_executions]]></name>
+			<description><![CDATA[]]></description>
+			<tooltip><![CDATA[]]></tooltip>
+			<drillclass><![CDATA[]]></drillclass>
+			<CustomValues>
+				<TYPE><![CDATA[horizontal]]></TYPE>
+			</CustomValues>
+			<query>
+				<sql><![CDATA[select *
+from dba_advisor_executions
+where task_id = :TASK_ID]]></sql>
+				<binds>
+					<bind id="TASK_ID">
+						<prompt><![CDATA[TASK_ID]]></prompt>
+						<tooltip><![CDATA[TASK_ID]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+				</binds>
+			</query>
+		</display>
+	</display>
+	<display id="c786578f-0183-1000-8054-c0a838012a96" type="" style="Table" enable="true">
+		<name><![CDATA[Masked Devops AWR Events]]></name>
+		<description><![CDATA[]]></description>
+		<tooltip><![CDATA[]]></tooltip>
+		<drillclass><![CDATA[]]></drillclass>
+		<CustomValues>
+			<TYPE><![CDATA[horizontal]]></TYPE>
+		</CustomValues>
+		<query>
+			<sql><![CDATA[-- -----------------------------------------------------------------------------
+-- Author      : Masked DevOps
+-- Date        : Jan 2012
+-- Version     : 0.1
+--
+-- SQL Developer report for database administration
+-- Copyright (C) 2022  Emanuele Moccia
+-- masked.devops@yahoo.com
+--
+-- This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU General Public License as published by
+-- the Free Software Foundation, either version 3 of the License, or
+-- any later version.
+--
+-- This program is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-- GNU General Public License for more details.
+--
+-- You should have received a copy of the GNU General Public License
+-- along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-- -----------------------------------------------------------------------------
+with
+parms as (select 
+			 nvl(to_date(:P_START_DATE,'yyyy-mm-dd hh24:mi'),sysdate-1)  start_date
+			,nvl(to_date(:P_END_DATE,'yyyy-mm-dd hh24:mi'),sysdate)	     end_date
+			,nvl(:P_INST_ID,sys_context('USERENV', 'INSTANCE'))          instance_number
+		  from dual)
+select
+     wait_class
+    ,event#
+    ,name
+    ,parameter1
+    ,parameter2
+    ,parameter3
+    ,display_name
+    ,con_id
+    ,parms.start_date
+    ,parms.end_date         end_date
+    ,parms.instance_number
+from v$event_name
+    cross join parms
+order by wait_class_id,name]]></sql>
+			<binds>
+				<bind id="P_START_DATE">
+					<prompt><![CDATA[P_START_DATE]]></prompt>
+					<tooltip><![CDATA[yyyy-mm-dd hh24:mi]]></tooltip>
+					<value><![CDATA[NULL_VALUE]]></value>
+					<bracket><![CDATA[null]]></bracket>
+				</bind>
+				<bind id="P_END_DATE">
+					<prompt><![CDATA[P_END_DATE]]></prompt>
+					<tooltip><![CDATA[yyyy-mm-dd hh24:mi]]></tooltip>
+					<value><![CDATA[NULL_VALUE]]></value>
+					<bracket><![CDATA[null]]></bracket>
+				</bind>
+				<bind id="P_INST_ID">
+					<prompt><![CDATA[P_INST_ID]]></prompt>
+					<tooltip><![CDATA[P_INST_ID]]></tooltip>
+					<value><![CDATA[NULL_VALUE]]></value>
+					<bracket><![CDATA[null]]></bracket>
+				</bind>
+			</binds>
+		</query>
+		<display id="null" type="" style="Table" enable="true">
+			<name><![CDATA[Event History]]></name>
+			<description><![CDATA[]]></description>
+			<tooltip><![CDATA[]]></tooltip>
+			<drillclass><![CDATA[]]></drillclass>
+			<CustomValues>
+				<TYPE><![CDATA[horizontal]]></TYPE>
+			</CustomValues>
+			<query>
+				<sql><![CDATA[select 
+     to_char(end_interval_time,'yyyy-mm-dd hh24:mi:ss day') end_interval_time
+    ,instance_number
+    ,event_name
+    ,wait_class
+    ,time_waited_ms
+    ,avg_wait_ms
+from (select end_interval_time
+        ,instance_number
+        ,event_name
+        ,wait_class
+        ,(total_waits - total_waits_prev) total_waits
+        ,(time_waited_micro - time_waited_micro_prev)/1000 time_waited_ms
+        ,round(case when (total_waits - total_waits_prev) > 0 then (time_waited_micro - time_waited_micro_prev)/((total_waits - total_waits_prev))/1000  else 0 end,2)  avg_wait_ms
+      from (
+            select 
+               end_interval_time
+              ,event.instance_number
+              ,event_name
+              ,lag(event_name) over (order by event.instance_number,event_name,end_interval_time) event_name_prev
+              ,lag(event.instance_number) over (order by event.instance_number,event_name,end_interval_time) instance_number_prev
+              ,wait_class
+              ,total_waits
+              ,lag(total_waits) over (order by event.instance_number,event_name,end_interval_time) total_waits_prev
+              ,time_waited_micro 
+              ,lag(time_waited_micro)   over (order by event.instance_number,event_name,end_interval_time) time_waited_micro_prev
+            from dba_hist_system_event event 
+                join dba_hist_snapshot snap on event.dbid = snap.dbid and event.instance_number = snap.instance_number and event.snap_id = snap.snap_id and event_name = :NAME
+            where 1=1
+                and snap.end_interval_time between :START_DATE and :END_DATE
+                and snap.instance_number = :INSTANCE_NUMBER
+        ) last
+      where event_name =event_name_prev
+        and instance_number = instance_number_prev
+      order by end_interval_time desc, time_waited_ms desc
+     )
+order by end_interval_time,instance_number]]></sql>
+				<binds>
+					<bind id="NAME">
+						<prompt><![CDATA[NAME]]></prompt>
+						<tooltip><![CDATA[NAME]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="START_DATE">
+						<prompt><![CDATA[START_DATE]]></prompt>
+						<tooltip><![CDATA[START_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="END_DATE">
+						<prompt><![CDATA[END_DATE]]></prompt>
+						<tooltip><![CDATA[END_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="INSTANCE_NUMBER">
+						<prompt><![CDATA[INSTANCE_NUMBER]]></prompt>
+						<tooltip><![CDATA[INSTANCE_NUMBER]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+				</binds>
+			</query>
+		</display>
+		<display id="null" type="" style="Chart" enable="true">
+			<name><![CDATA[Event Hist avg chart]]></name>
+			<description><![CDATA[]]></description>
+			<tooltip><![CDATA[]]></tooltip>
+			<drillclass><![CDATA[]]></drillclass>
+			<CustomValues>
+				<TYPE><![CDATA[BAR_VERT_CLUST]]></TYPE>
+			</CustomValues>
+			<query>
+				<sql><![CDATA[select 
+     to_char(end_interval_time,'yyyy-mm-dd hh24:mi:ss') end_interval_time
+    ,event_name
+    ,avg_wait_ms
+from (select end_interval_time
+        ,instance_number
+        ,event_name
+        ,wait_class
+        ,(total_waits - total_waits_prev) total_waits
+        ,(time_waited_micro - time_waited_micro_prev)/1000 time_waited_ms
+        ,round(case when (total_waits - total_waits_prev) > 0 then (time_waited_micro - time_waited_micro_prev)/((total_waits - total_waits_prev))/1000  else 0 end,2)  avg_wait_ms
+      from (
+            select 
+               end_interval_time
+              ,event.instance_number
+              ,event_name
+              ,lag(event_name) over (order by event.instance_number,event_name,end_interval_time) event_name_prev
+              ,lag(event.instance_number) over (order by event.instance_number,event_name,end_interval_time) instance_number_prev
+              ,wait_class
+              ,total_waits
+              ,lag(total_waits) over (order by event.instance_number,event_name,end_interval_time) total_waits_prev
+              ,time_waited_micro 
+              ,lag(time_waited_micro)   over (order by event.instance_number,event_name,end_interval_time) time_waited_micro_prev
+            from dba_hist_system_event event 
+                join dba_hist_snapshot snap on event.dbid = snap.dbid and event.instance_number = snap.instance_number and event.snap_id = snap.snap_id and event_name = :NAME
+            where 1=1
+                and snap.end_interval_time between :START_DATE and :END_DATE
+                and snap.instance_number = :INSTANCE_NUMBER
+           ) last
+      where event_name =event_name_prev
+        and instance_number = instance_number_prev
+      order by end_interval_time desc, time_waited_ms desc
+)
+order by end_interval_time,instance_number]]></sql>
+				<binds>
+					<bind id="NAME">
+						<prompt><![CDATA[NAME]]></prompt>
+						<tooltip><![CDATA[NAME]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="START_DATE">
+						<prompt><![CDATA[START_DATE]]></prompt>
+						<tooltip><![CDATA[START_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="END_DATE">
+						<prompt><![CDATA[END_DATE]]></prompt>
+						<tooltip><![CDATA[END_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="INSTANCE_NUMBER">
+						<prompt><![CDATA[INSTANCE_NUMBER]]></prompt>
+						<tooltip><![CDATA[INSTANCE_NUMBER]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+				</binds>
+			</query>
+		</display>
+		<display id="null" type="" style="Chart" enable="true">
+			<name><![CDATA[Event Hist tot chart]]></name>
+			<description><![CDATA[]]></description>
+			<tooltip><![CDATA[]]></tooltip>
+			<drillclass><![CDATA[]]></drillclass>
+			<CustomValues>
+				<TYPE><![CDATA[BAR_VERT_CLUST]]></TYPE>
+			</CustomValues>
+			<query>
+				<sql><![CDATA[with
+parms as (select 
+			 nvl(to_date(:P_START_DATE,'yyyy-mm-dd hh24:mi'),sysdate-1)  start_date
+			,nvl(to_date(:P_END_DATE,'yyyy-mm-dd hh24:mi'),sysdate)	     end_date
+			,nvl(:P_INST_ID,sys_context('USERENV', 'INSTANCE')) instance_number
+		  from dual)
+select 
+     to_char(end_interval_time,'yyyy-mm-dd hh24:mi:ss') end_interval_time
+    ,event_name
+    ,time_waited_ms/1000  time_waited_seconds
+from (select end_interval_time
+        ,instance_number
+        ,event_name
+        ,wait_class
+        ,(total_waits - total_waits_prev) total_waits
+        ,(time_waited_micro - time_waited_micro_prev)/1000 time_waited_ms
+        ,round(case when (total_waits - total_waits_prev) > 0 then (time_waited_micro - time_waited_micro_prev)/((total_waits - total_waits_prev))/1000  else 0 end,2)  avg_wait_ms
+      from (
+            select 
+               end_interval_time
+              ,event.instance_number
+              ,event_name
+              ,lag(event_name) over (order by event.instance_number,event_name,end_interval_time) event_name_prev
+              ,lag(event.instance_number) over (order by event.instance_number,event_name,end_interval_time) instance_number_prev
+              ,wait_class
+              ,total_waits
+              ,lag(total_waits) over (order by event.instance_number,event_name,end_interval_time) total_waits_prev
+              ,time_waited_micro 
+              ,lag(time_waited_micro)   over (order by event.instance_number,event_name,end_interval_time) time_waited_micro_prev
+            from dba_hist_system_event event 
+                join dba_hist_snapshot snap on event.dbid = snap.dbid and event.instance_number = snap.instance_number and event.snap_id = snap.snap_id and event_name = :NAME
+            where 1=1
+                and snap.end_interval_time between :START_DATE and :END_DATE
+                and snap.instance_number = :INSTANCE_NUMBER
+           ) last
+      where event_name =event_name_prev
+        and instance_number = instance_number_prev
+      order by end_interval_time desc, time_waited_ms desc
+)
+order by end_interval_time,instance_number]]></sql>
+				<binds>
+					<bind id="P_START_DATE">
+						<prompt><![CDATA[P_START_DATE]]></prompt>
+						<tooltip><![CDATA[P_START_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="P_END_DATE">
+						<prompt><![CDATA[P_END_DATE]]></prompt>
+						<tooltip><![CDATA[P_END_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="P_INST_ID">
+						<prompt><![CDATA[P_INST_ID]]></prompt>
+						<tooltip><![CDATA[P_INST_ID]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="NAME">
+						<prompt><![CDATA[NAME]]></prompt>
+						<tooltip><![CDATA[NAME]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="START_DATE">
+						<prompt><![CDATA[START_DATE]]></prompt>
+						<tooltip><![CDATA[START_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="END_DATE">
+						<prompt><![CDATA[END_DATE]]></prompt>
+						<tooltip><![CDATA[END_DATE]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+					<bind id="INSTANCE_NUMBER">
+						<prompt><![CDATA[INSTANCE_NUMBER]]></prompt>
+						<tooltip><![CDATA[INSTANCE_NUMBER]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+				</binds>
+			</query>
+		</display>
+	</display>
+	<display id="bf0b005e-0183-1000-8013-c0a838012a96" type="" style="Table" enable="true">
+		<name><![CDATA[Masked Devops I/O]]></name>
+		<description><![CDATA[Block RW response time,IOPS, Throughput, Redologs I/O
+control file parallel write           15  millisenconds
+control file sequential read        20  millisenconds
+db file parallel read                  20  millisenconds
+db file scattered read               20  millisenconds
+db file sequential read             20  millisenconds
+direct path read Read               20  millisenconds
+direct path read temp               20  millisenconds
+direct path write                      15  millisenconds
+direct path write temp              15  millisenconds
+log file parallel write                15  millisenconds
+cell smart table scan               1   millisenconds
+cell single block physical read     1   millisenconds
+cell multiblock physical read       6   millisenconds]]></description>
+		<tooltip><![CDATA[Block RW response time,IOPS, Throughput, Redologs I/O]]></tooltip>
+		<drillclass><![CDATA[]]></drillclass>
+		<CustomValues>
+			<TYPE><![CDATA[horizontal]]></TYPE>
+		</CustomValues>
+		<query>
+			<sql><![CDATA[-- -----------------------------------------------------------------------------
+-- Author      : Masked DevOps
+-- Date        : Jan 2012
+-- Version     : 0.1
+--
+-- SQL Developer report for database administration
+-- Copyright (C) 2022  Emanuele Moccia
+-- masked.devops@yahoo.com
+--
+-- This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU General Public License as published by
+-- the Free Software Foundation, either version 3 of the License, or
+-- any later version.
+--
+-- This program is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-- GNU General Public License for more details.
+--
+-- You should have received a copy of the GNU General Public License
+-- along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-- -----------------------------------------------------------------------------
+with
+parms as (select
+             nvl(to_date(:P_START_DATE,'yyyy-mm-dd hh24:mi'),sysdate-1)  start_date
+            ,nvl(to_date(:P_END_DATE,'yyyy-mm-dd hh24:mi'),sysdate)      end_date
+            ,nvl(:P_INST_ID,sys_context('USERENV', 'INSTANCE'))          instance_number
+          from dual)
+select
+     end_interval_time
+    ,to_char(round(max(decode(event_name,'db file scattered read',avg_wait_ms,null)),2),'99999990.990')           db_file_scat_read
+    ,to_char(round(max(decode(event_name,'db file sequential read',avg_wait_ms,null)),2),'99999990.990')          db_file_seq_read
+    ,to_char(round(max(decode(event_name,'db file parallel read',avg_wait_ms,null)),2),'99999990.990')            db_file_paral_read
+    ,to_char(round(max(decode(event_name,'direct path read',avg_wait_ms,null)),2),'99999990.990')                 drct_path_read_Read
+    ,to_char(round(max(decode(event_name,'direct path read temp',avg_wait_ms,null)),2),'99999990.990')            drct_path_read_temp
+    ,to_char(round(max(decode(event_name,'direct path write',avg_wait_ms,null)),2),'99999990.990')                drct_path_write
+    ,to_char(round(max(decode(event_name,'direct path write temp',avg_wait_ms,null)),2),'99999990.990')           drct_path_write_temp
+    ,to_char(round(max(decode(event_name,'log file parallel write',avg_wait_ms,null)),2),'99999990.990')          log_file_paral_write
+    ,to_char(round(max(decode(event_name,'control file parallel write',avg_wait_ms,null)),2),'99999990.990')      ctrl_file_parallel_write
+    ,to_char(round(max(decode(event_name,'control file sequential read',avg_wait_ms,null)),2),'99999990.990')     ctrl_file_seq_read
+    ,to_char(round(max(decode(event_name,'cell smart table scan',avg_wait_ms,null)),2),'99999990.990')            cell_smart_table_scan_1_ms
+    ,to_char(round(max(decode(event_name,'cell single block physical read',avg_wait_ms,null)),2),'99999990.990')  cell_sngl_blk_phys_read
+    ,to_char(round(max(decode(event_name,'cell multiblock physical read',avg_wait_ms,null)),2),'99999990.990')    cell_mltblk_phys_read
+    ,max(parms.instance_number)               inst_id
+    ,max(start_date)                          start_date
+    ,max(end_date)                            end_date
+from (select end_interval_time
+            ,event_name
+            ,wait_class
+            ,(total_waits - total_waits_prev) total_waits
+            ,(time_waited_micro - time_waited_micro_prev)/1000 time_waited_ms
+            ,round(case when (total_waits - total_waits_prev) > 0
+                  then (time_waited_micro - time_waited_micro_prev)/((total_waits - total_waits_prev))/1000
+                  else 0
+                  end,2)  avg_wait_ms
+      from (
+            select
+               to_char(end_interval_time,'yyyy-mm-dd hh24 day') end_interval_time
+              ,event_name
+              ,lag(event_name) over (order by event_name,end_interval_time) event_name_prev
+              ,wait_class
+              ,total_waits
+              ,lag(total_waits) over (order by event_name,end_interval_time) total_waits_prev
+              ,time_waited_micro
+              ,lag(time_waited_micro) over (order by event_name,end_interval_time) time_waited_micro_prev
+            from dba_hist_system_event se join dba_hist_snapshot snap on se.dbid = snap.dbid  and se.instance_number = snap.instance_number  and se.snap_id = snap.snap_id
+                cross join parms
+            where 1=1
+                and snap.end_interval_time between parms.start_date and parms.end_date
+                and snap.instance_number = parms.instance_number
+            ) se1
+      where event_name = event_name_prev
+      order by end_interval_time desc, time_waited_ms desc
+    ) se2, parms
+group by end_interval_time
+order by end_interval_time asc]]></sql>
+			<binds>
+				<bind id="P_START_DATE">
+					<prompt><![CDATA[P_START_DATE]]></prompt>
+					<tooltip><![CDATA[yyyy-mm-dd hh24:mi]]></tooltip>
+					<value><![CDATA[NULL_VALUE]]></value>
+					<bracket><![CDATA[null]]></bracket>
+				</bind>
+				<bind id="P_END_DATE">
+					<prompt><![CDATA[P_END_DATE]]></prompt>
+					<tooltip><![CDATA[yyyy-mm-dd hh24:mi]]></tooltip>
+					<value><![CDATA[NULL_VALUE]]></value>
+					<bracket><![CDATA[null]]></bracket>
+				</bind>
+				<bind id="P_INST_ID">
+					<prompt><![CDATA[P_INST_ID]]></prompt>
+					<tooltip><![CDATA[P_INST_ID]]></tooltip>
+					<value><![CDATA[NULL_VALUE]]></value>
+					<bracket><![CDATA[null]]></bracket>
+				</bind>
+			</binds>
+		</query>
+		<display id="null" type="" style="Chart" enable="true">
+			<name><![CDATA[IOPS]]></name>
+			<description><![CDATA[IOPS - (Input/Output Operations Per Second) -  This is the sum of Physical Read Total IO Requests and Physical Write Total IO Requests ]]></description>
+			<tooltip><![CDATA[IOPS - (Input/Output Operations Per Second) -  This is the sum of Physical Read Total IO Requests and Physical Write Total IO Requests ]]></tooltip>
+			<drillclass><![CDATA[]]></drillclass>
+			<CustomValues>
+				<PLOT_HGRID_WIDTH><![CDATA[THINNER]]></PLOT_HGRID_WIDTH>
+				<Y1AXIS_SCALE_INCREMENT><![CDATA[30.0]]></Y1AXIS_SCALE_INCREMENT>
+				<Y2AXIS_SCALE_MAXIMUM><![CDATA[80.0]]></Y2AXIS_SCALE_MAXIMUM>
+				<Y1AXIS_LINE_WIDTH><![CDATA[THINNEST]]></Y1AXIS_LINE_WIDTH>
+				<Y1AXIS_TITLE_ALIGNMENT><![CDATA[CENTER]]></Y1AXIS_TITLE_ALIGNMENT>
+				<LEGEND_LOCATION><![CDATA[AUTOMATIC]]></LEGEND_LOCATION>
+				<LEGEND_ALIGNMENT><![CDATA[LEFT]]></LEGEND_ALIGNMENT>
+				<XAXIS_LINE_WIDTH><![CDATA[THINNEST]]></XAXIS_LINE_WIDTH>
+				<Y1AXIS_SCALE_MAXIMUM><![CDATA[210.0]]></Y1AXIS_SCALE_MAXIMUM>
+				<XAXIS_TITLE_ALIGNMENT><![CDATA[CENTER]]></XAXIS_TITLE_ALIGNMENT>
+				<XAXIS_TICK_LABEL_ROTATE><![CDATA[HORIZONTAL]]></XAXIS_TICK_LABEL_ROTATE>
+				<Y1AXIS_LOGARITHMIC_BASE><![CDATA[BASE_10]]></Y1AXIS_LOGARITHMIC_BASE>
+				<TYPE><![CDATA[BAR_VERT_STACK]]></TYPE>
+				<GRID_WIDTH><![CDATA[THINNER]]></GRID_WIDTH>
+				<PLOT_DATALABELS_BAR_POSITION><![CDATA[ABOVE]]></PLOT_DATALABELS_BAR_POSITION>
+				<FOOTNOTE_ALIGNMENT><![CDATA[LEFT]]></FOOTNOTE_ALIGNMENT>
+				<XAXIS_TICK_LABEL_SKIP_MODE><![CDATA[AUTOMATIC]]></XAXIS_TICK_LABEL_SKIP_MODE>
+				<Y2AXIS_LOGARITHMIC_BASE><![CDATA[BASE_10]]></Y2AXIS_LOGARITHMIC_BASE>
+				<STYLE><![CDATA[Default]]></STYLE>
+				<TITLE_ALIGNMENT><![CDATA[LEFT]]></TITLE_ALIGNMENT>
+				<Y2AXIS_TICK_LABEL_ROTATE><![CDATA[HORIZONTAL]]></Y2AXIS_TICK_LABEL_ROTATE>
+				<Y2AXIS_SCALE_MINIMUM><![CDATA[10.0]]></Y2AXIS_SCALE_MINIMUM>
+				<Y2AXIS_LINE_WIDTH><![CDATA[THINNEST]]></Y2AXIS_LINE_WIDTH>
+				<Y1AXIS_TICK_LABEL_ROTATE><![CDATA[HORIZONTAL]]></Y1AXIS_TICK_LABEL_ROTATE>
+				<Y2AXIS_SCALE_INCREMENT><![CDATA[20.0]]></Y2AXIS_SCALE_INCREMENT>
+				<PLOT_VGRID_WIDTH><![CDATA[THINNER]]></PLOT_VGRID_WIDTH>
+				<Y2AXIS_TITLE_ALIGNMENT><![CDATA[CENTER]]></Y2AXIS_TITLE_ALIGNMENT>
+				<SUBTITLE_ALIGNMENT><![CDATA[LEFT]]></SUBTITLE_ALIGNMENT>
+			</CustomValues>
+			<query>
+				<sql><![CDATA[--Doc ID 2206831.1
+select
+     end_interval_time
+    ,metric_name
+    ,average/case when metric_unit = 'Milliseconds' then 1000 when metric_unit = 'CentiSeconds Per Second' then 100 else 1 end average
+from dba_hist_sysmetric_summary stat 
+    join dba_hist_snapshot snap on stat.dbid = snap.dbid and stat.instance_number = snap.instance_number and stat.snap_id = snap.snap_id
+where 1=1 
+    and snap.end_interval_time between :START_DATE and :END_DATE
+    and stat.metric_name in ('Physical Read Total IO Requests Per Sec', 'Physical Write Total IO Requests Per Sec')
+order by end_interval_time]]></sql>
+			</query>
+		</display>
+		<display id="null" type="" style="Chart" enable="true">
+			<name><![CDATA[Throughput]]></name>
+			<description><![CDATA[This is the sum of Physical read total bytes and Physical write total bytes]]></description>
+			<tooltip><![CDATA[This is the sum of Physical read total bytes and Physical write total bytes]]></tooltip>
+			<drillclass><![CDATA[]]></drillclass>
+			<CustomValues>
+				<PLOT_HGRID_WIDTH><![CDATA[THINNER]]></PLOT_HGRID_WIDTH>
+				<Y1AXIS_SCALE_INCREMENT><![CDATA[30.0]]></Y1AXIS_SCALE_INCREMENT>
+				<Y2AXIS_SCALE_MAXIMUM><![CDATA[80.0]]></Y2AXIS_SCALE_MAXIMUM>
+				<Y1AXIS_LINE_WIDTH><![CDATA[THINNEST]]></Y1AXIS_LINE_WIDTH>
+				<Y1AXIS_TITLE_ALIGNMENT><![CDATA[CENTER]]></Y1AXIS_TITLE_ALIGNMENT>
+				<LEGEND_LOCATION><![CDATA[AUTOMATIC]]></LEGEND_LOCATION>
+				<LEGEND_ALIGNMENT><![CDATA[LEFT]]></LEGEND_ALIGNMENT>
+				<XAXIS_LINE_WIDTH><![CDATA[THINNEST]]></XAXIS_LINE_WIDTH>
+				<Y1AXIS_SCALE_MAXIMUM><![CDATA[210.0]]></Y1AXIS_SCALE_MAXIMUM>
+				<XAXIS_TITLE_ALIGNMENT><![CDATA[CENTER]]></XAXIS_TITLE_ALIGNMENT>
+				<XAXIS_TICK_LABEL_ROTATE><![CDATA[HORIZONTAL]]></XAXIS_TICK_LABEL_ROTATE>
+				<Y1AXIS_LOGARITHMIC_BASE><![CDATA[BASE_10]]></Y1AXIS_LOGARITHMIC_BASE>
+				<TYPE><![CDATA[BAR_VERT_STACK]]></TYPE>
+				<GRID_WIDTH><![CDATA[THINNER]]></GRID_WIDTH>
+				<PLOT_DATALABELS_BAR_POSITION><![CDATA[ABOVE]]></PLOT_DATALABELS_BAR_POSITION>
+				<FOOTNOTE_ALIGNMENT><![CDATA[LEFT]]></FOOTNOTE_ALIGNMENT>
+				<XAXIS_TICK_LABEL_SKIP_MODE><![CDATA[AUTOMATIC]]></XAXIS_TICK_LABEL_SKIP_MODE>
+				<Y2AXIS_LOGARITHMIC_BASE><![CDATA[BASE_10]]></Y2AXIS_LOGARITHMIC_BASE>
+				<STYLE><![CDATA[Default]]></STYLE>
+				<TITLE_ALIGNMENT><![CDATA[LEFT]]></TITLE_ALIGNMENT>
+				<Y2AXIS_TICK_LABEL_ROTATE><![CDATA[HORIZONTAL]]></Y2AXIS_TICK_LABEL_ROTATE>
+				<Y2AXIS_SCALE_MINIMUM><![CDATA[10.0]]></Y2AXIS_SCALE_MINIMUM>
+				<Y2AXIS_LINE_WIDTH><![CDATA[THINNEST]]></Y2AXIS_LINE_WIDTH>
+				<Y1AXIS_TICK_LABEL_ROTATE><![CDATA[HORIZONTAL]]></Y1AXIS_TICK_LABEL_ROTATE>
+				<Y2AXIS_SCALE_INCREMENT><![CDATA[20.0]]></Y2AXIS_SCALE_INCREMENT>
+				<PLOT_VGRID_WIDTH><![CDATA[THINNER]]></PLOT_VGRID_WIDTH>
+				<Y2AXIS_TITLE_ALIGNMENT><![CDATA[CENTER]]></Y2AXIS_TITLE_ALIGNMENT>
+				<SUBTITLE_ALIGNMENT><![CDATA[LEFT]]></SUBTITLE_ALIGNMENT>
+			</CustomValues>
+			<query>
+				<sql><![CDATA[--Doc ID 2206831.1
+select
+     end_interval_time
+    ,metric_name
+    ,average/case when metric_unit = 'Milliseconds' then 1000 when metric_unit = 'CentiSeconds Per Second' then 100 else 1 end average
+from dba_hist_sysmetric_summary stat 
+    join dba_hist_snapshot snap on stat.dbid = snap.dbid and stat.instance_number = snap.instance_number and stat.snap_id = snap.snap_id
+where 1=1 
+    and snap.end_interval_time between :START_DATE and :END_DATE
+    and stat.metric_name in ('Physical Read Total Bytes Per Sec', 'Physical Write Total Bytes Per Sec')
+order by end_interval_time]]></sql>
+			</query>
+		</display>
+		<display id="null" type="" style="Table" enable="true">
+			<name><![CDATA[IOPS Data]]></name>
+			<description><![CDATA[IOPS - (Input/Output Operations Per Second) -  This is the sum of Physical Read Total IO Requests and Physical Write Total IO Requests ]]></description>
+			<tooltip><![CDATA[]]></tooltip>
+			<drillclass><![CDATA[]]></drillclass>
+			<CustomValues>
+				<TYPE><![CDATA[horizontal]]></TYPE>
+			</CustomValues>
+			<query>
+				<sql><![CDATA[--Doc ID 2206831.1
+select
+     end_interval_time
+    ,metric_name
+    ,average/case when metric_unit = 'Milliseconds' then 1000 when metric_unit = 'CentiSeconds Per Second' then 100 else 1 end average
+from dba_hist_sysmetric_summary stat 
+    join dba_hist_snapshot snap on stat.dbid = snap.dbid and stat.instance_number = snap.instance_number and stat.snap_id = snap.snap_id
+where 1=1 
+    and snap.end_interval_time between :START_DATE and :END_DATE
+    and stat.metric_name in ('Physical Read Total IO Requests Per Sec', 'Physical Write Total IO Requests Per Sec')
+order by end_interval_time]]></sql>
+			</query>
+		</display>
+		<display id="null" type="" style="Table" enable="true">
+			<name><![CDATA[Throughput Data]]></name>
+			<description><![CDATA[]]></description>
+			<tooltip><![CDATA[IOPS, Throughput, Redolog stats]]></tooltip>
+			<drillclass><![CDATA[]]></drillclass>
+			<CustomValues>
+				<TYPE><![CDATA[horizontal]]></TYPE>
+			</CustomValues>
+			<query>
+				<sql><![CDATA[--Doc ID 2206831.1
+select
+     end_interval_time
+    ,metric_name
+    ,average/case when metric_unit = 'Milliseconds' then 1000 when metric_unit = 'CentiSeconds Per Second' then 100 else 1 end average
+from dba_hist_sysmetric_summary stat 
+    join dba_hist_snapshot snap on stat.dbid = snap.dbid and stat.instance_number = snap.instance_number and stat.snap_id = snap.snap_id
+where 1=1 
+    and snap.end_interval_time between :START_DATE and :END_DATE
+    and stat.metric_name in ('Physical Read Total Bytes Per Sec', 'Physical Write Total Bytes Per Sec')
+order by end_interval_time]]></sql>
+			</query>
+		</display>
+		<display id="null" type="" style="Table" enable="true">
+			<name><![CDATA[System Statistics redologs]]></name>
+			<description><![CDATA[]]></description>
+			<tooltip><![CDATA[]]></tooltip>
+			<drillclass><![CDATA[]]></drillclass>
+			<CustomValues>
+				<TYPE><![CDATA[horizontal]]></TYPE>
+			</CustomValues>
+			<query>
+				<sql><![CDATA[select to_char(end_interval_time,'yyyy-mm-dd hh24:mi:ss day')                       end_interval_time
+      --,instance_number
+      ,round((redo_write_time*10)/redo_writes,2)                                    avg_write_time_ms
+      ,user_commits                                     
+      ,trunc(redo_write_time*10/1000)                                               redo_write_time_tot_sec 
+      ,round((redo_blocks_written*(select max(blocksize) from v$log)/1024/1024))    redo_blocks_written_mb
+      ,round(redo_size/1024/1024)                                                   redo_size_mb
+      ,redo_writes
+      ,round((redo_blocks_written*(select max(blocksize) from v$log)/1024)/redo_writes) avg_block_written_kb
+from (select         
+           end_interval_time
+          ,instance_number
+          ,max(decode(stat_name,'redo blocks written',value,null))               redo_blocks_written
+          ,max(decode(stat_name,'redo buffer allocation retries',value,null))    redo_buffer_allocation_retries
+          ,max(decode(stat_name,'redo entries',value,null))                      redo_entries
+          ,max(decode(stat_name,'redo log space requests',value,null))           redo_log_space_requests
+          ,max(decode(stat_name,'redo log space wait time',value,null))          redo_log_space_wait_time
+          ,max(decode(stat_name,'redo log switch interrupts',value,null))        redo_log_switch_interrupts
+          ,max(decode(stat_name,'redo ordering marks',value,null))               redo_ordering_marks
+          ,max(decode(stat_name,'redo write time',value,null))                   redo_write_time
+          ,max(decode(stat_name,'redo writes',value,null))                       redo_writes
+          ,max(decode(stat_name,'redo synch writes',value,null))                 redo_synch_writes
+          ,max(decode(stat_name,'redo synch time',value,null))                   redo_synch_time
+          ,max(decode(stat_name,'redo size',value,null))                         redo_size
+          ,max(decode(stat_name,'redo wastage',value,null))                      redo_wastage
+          ,max(decode(stat_name,'user commits',value,null))                      user_commits
+      from (select instance_number,end_interval_time,stat_name,(value - value_prev)  value
+                   ,trunc(((value - value_prev))/3600,2)             per_second
+            from (
+                  select end_interval_time
+                    ,stat.instance_number
+                    ,stat_name
+                    ,lag(stat_name) over (order by stat.instance_number,stat_name,end_interval_time)     stat_name_prev
+                    ,lag(value)     over (order by stat.instance_number,stat_name,end_interval_time)     value_prev
+                    ,lag(stat.instance_number)     over (order by stat.instance_number,stat_name,end_interval_time)     instance_number_prev
+                    ,value
+                  from dba_hist_sysstat stat join dba_hist_snapshot snap on stat.dbid = snap.dbid and stat.instance_number = snap.instance_number and stat.snap_id = snap.snap_id
+                  where 1=1 
+                    and snap.end_interval_time between :START_DATE and :END_DATE
+            )
+            where stat_name=stat_name_prev and instance_number = instance_number_prev
+      )
+      group by instance_number,end_interval_time
+      order by end_interval_time,instance_number 
+)
+order by end_interval_time,instance_number]]></sql>
+			</query>
+		</display>
+		<display id="null" type="" style="Table" enable="true">
+			<name><![CDATA[Num block requests]]></name>
+			<description><![CDATA[]]></description>
+			<tooltip><![CDATA[]]></tooltip>
+			<drillclass><![CDATA[]]></drillclass>
+			<CustomValues>
+				<TYPE><![CDATA[horizontal]]></TYPE>
+			</CustomValues>
+			<query>
+				<sql><![CDATA[select
+     end_interval_time
+    ,max(decode(event_name,'db file scattered read',total_waits,null))          db_file_scat_read
+    ,max(decode(event_name,'db file sequential read',total_waits,null))         db_file_seq_read
+    ,max(decode(event_name,'db file parallel read',total_waits,null))           db_file_paral_read
+    ,max(decode(event_name,'direct path read',total_waits,null))                drct_path_read_Read
+    ,max(decode(event_name,'direct path read temp',total_waits,null))           drct_path_read_temp
+    ,max(decode(event_name,'direct path write',total_waits,null))               drct_path_write
+    ,max(decode(event_name,'direct path write temp',total_waits,null))          drct_path_write_temp
+    ,max(decode(event_name,'log file parallel write',total_waits,null))         log_file_paral_write
+    ,max(decode(event_name,'control file parallel write',total_waits,null))     ctrl_file_parallel_write
+    ,max(decode(event_name,'control file sequential read',total_waits,null))    ctrl_file_seq_read
+    ,max(decode(event_name,'cell smart table scan',total_waits,null))           cell_smart_table_scan_1_ms
+    ,max(decode(event_name,'cell single block physical read',total_waits,null)) cell_sngl_blk_phys_read
+    ,max(decode(event_name,'cell multiblock physical read',total_waits,null))   cell_mltblk_phys_read
+from (select end_interval_time
+            ,event_name
+            ,wait_class
+            ,(total_waits - total_waits_prev) total_waits
+            ,(time_waited_micro - time_waited_micro_prev)/1000 time_waited_ms
+            ,round(case when (total_waits - total_waits_prev) > 0
+                  then (time_waited_micro - time_waited_micro_prev)/((total_waits - total_waits_prev))/1000
+                  else 0
+                  end,2)  avg_wait_ms
+      from (
+            select
+               to_char(end_interval_time,'yyyy-mm-dd hh24 day') end_interval_time
+              ,event_name
+              ,lag(event_name) over (order by event_name,end_interval_time) event_name_prev
+              ,wait_class
+              ,total_waits
+              ,lag(total_waits) over (order by event_name,end_interval_time) total_waits_prev
+              ,time_waited_micro
+              ,lag(time_waited_micro) over (order by event_name,end_interval_time) time_waited_micro_prev
+            from dba_hist_system_event se join dba_hist_snapshot snap on se.dbid = snap.dbid  and se.instance_number = snap.instance_number  and se.snap_id = snap.snap_id
+            where 1=1
+                and snap.end_interval_time between :START_DATE and :END_DATE
+                and snap.instance_number = :INST_ID
+            ) se1
+      where event_name = event_name_prev
+      order by end_interval_time desc, time_waited_ms desc
+    ) se2
+group by end_interval_time
+order by end_interval_time asc]]></sql>
+			</query>
+		</display>
+	</display>
+	<display id="cd38c652-0183-1000-8073-c0a838012a96" type="" style="Chart" enable="true">
+		<name><![CDATA[Masked Devops Storage Tablespace growth]]></name>
+		<description><![CDATA[]]></description>
+		<tooltip><![CDATA[]]></tooltip>
+		<drillclass><![CDATA[]]></drillclass>
+		<CustomValues>
+			<PLOT_HGRID_WIDTH><![CDATA[THINNER]]></PLOT_HGRID_WIDTH>
+			<Y1AXIS_SCALE_INCREMENT><![CDATA[10.0]]></Y1AXIS_SCALE_INCREMENT>
+			<Y2AXIS_SCALE_MAXIMUM><![CDATA[80.0]]></Y2AXIS_SCALE_MAXIMUM>
+			<Y1AXIS_LINE_WIDTH><![CDATA[THINNEST]]></Y1AXIS_LINE_WIDTH>
+			<Y1AXIS_TITLE_ALIGNMENT><![CDATA[CENTER]]></Y1AXIS_TITLE_ALIGNMENT>
+			<LEGEND_LOCATION><![CDATA[AUTOMATIC]]></LEGEND_LOCATION>
+			<LEGEND_ALIGNMENT><![CDATA[LEFT]]></LEGEND_ALIGNMENT>
+			<XAXIS_LINE_WIDTH><![CDATA[THINNEST]]></XAXIS_LINE_WIDTH>
+			<Y1AXIS_SCALE_MAXIMUM><![CDATA[60.0]]></Y1AXIS_SCALE_MAXIMUM>
+			<XAXIS_TITLE_ALIGNMENT><![CDATA[CENTER]]></XAXIS_TITLE_ALIGNMENT>
+			<XAXIS_TICK_LABEL_ROTATE><![CDATA[HORIZONTAL]]></XAXIS_TICK_LABEL_ROTATE>
+			<Y1AXIS_LOGARITHMIC_BASE><![CDATA[BASE_10]]></Y1AXIS_LOGARITHMIC_BASE>
+			<TYPE><![CDATA[BAR_VERT_STACK]]></TYPE>
+			<GRID_WIDTH><![CDATA[THINNER]]></GRID_WIDTH>
+			<PLOT_DATALABELS_BAR_POSITION><![CDATA[ABOVE]]></PLOT_DATALABELS_BAR_POSITION>
+			<FOOTNOTE_ALIGNMENT><![CDATA[LEFT]]></FOOTNOTE_ALIGNMENT>
+			<XAXIS_TICK_LABEL_SKIP_MODE><![CDATA[AUTOMATIC]]></XAXIS_TICK_LABEL_SKIP_MODE>
+			<Y2AXIS_LOGARITHMIC_BASE><![CDATA[BASE_10]]></Y2AXIS_LOGARITHMIC_BASE>
+			<STYLE><![CDATA[Default]]></STYLE>
+			<TITLE_ALIGNMENT><![CDATA[LEFT]]></TITLE_ALIGNMENT>
+			<Y2AXIS_TICK_LABEL_ROTATE><![CDATA[HORIZONTAL]]></Y2AXIS_TICK_LABEL_ROTATE>
+			<Y2AXIS_SCALE_MINIMUM><![CDATA[10.0]]></Y2AXIS_SCALE_MINIMUM>
+			<Y2AXIS_LINE_WIDTH><![CDATA[THINNEST]]></Y2AXIS_LINE_WIDTH>
+			<Y1AXIS_TICK_LABEL_ROTATE><![CDATA[HORIZONTAL]]></Y1AXIS_TICK_LABEL_ROTATE>
+			<Y2AXIS_SCALE_INCREMENT><![CDATA[20.0]]></Y2AXIS_SCALE_INCREMENT>
+			<PLOT_VGRID_WIDTH><![CDATA[THINNER]]></PLOT_VGRID_WIDTH>
+			<Y2AXIS_TITLE_ALIGNMENT><![CDATA[CENTER]]></Y2AXIS_TITLE_ALIGNMENT>
+			<SUBTITLE_ALIGNMENT><![CDATA[LEFT]]></SUBTITLE_ALIGNMENT>
+		</CustomValues>
+		<query>
+			<sql><![CDATA[-- -----------------------------------------------------------------------------
+-- Author      : Emanuele Moccia
+-- Date        : Jan 2012
+-- Version     : 0.1
+-- -----------------------------------------------------------------------------
+with
+    parms as (select 
+			 nvl(to_date(:P_START_DATE,'yyyy-mm-dd hh24:mi'),sysdate-1)  start_date
+			,nvl(to_date(:P_END_DATE,'yyyy-mm-dd hh24:mi'),sysdate)	     end_date
+			,nvl(:CON_ID,sys_context('USERENV', 'CON_ID'))               con_id  
+		  from dual),
+    db_sizes as (
+                select 
+                     hs.begin_interval_time
+                    ,tsu.con_id
+                    ,tablespace_name
+                    ,round(sum((tsu.tablespace_size*dt.block_size)/1024/1024/1024),2)	  size_gb
+                    ,round(sum((tsu.tablespace_usedsize*dt.block_size)/1024/1024/1024),2) used_gb
+                from cdb_hist_tbspc_space_usage tsu
+           			join dba_hist_snapshot hs           on tsu.dbid = hs.dbid and tsu.snap_id = hs.snap_id
+                    join cdb_hist_tablespace_stat ts    on tsu.tablespace_id = ts.ts# and tsu.dbid = ts.dbid and tsu.snap_id = ts.snap_id and tsu.con_id = ts.con_id
+                    join cdb_tablespaces dt             on ts.tsname = dt.tablespace_name and ts.con_id = dt.con_id
+                    cross join parms
+                where tsu.con_id = parms.con_id
+                group by hs.begin_interval_time,tsu.con_id,tablespace_name
+                )
+select
+     begin_interval_time
+    ,tablespace_name
+    ,size_gb
+    --,used_gb
+    ,con_id
+from ( select
+            trunc(begin_interval_time,'dd') begin_interval_time
+            ,con_id
+            ,tablespace_name
+            ,max(size_gb)	 size_gb
+            ,max(used_gb)	 used_gb
+        from db_sizes
+        group by begin_interval_time, con_id, tablespace_name
+	) 
+        --unpivot (value for sz in (size_gb,used_gb))
+order by begin_interval_time]]></sql>
+			<binds>
+				<bind id="P_START_DATE">
+					<prompt><![CDATA[P_START_DATE]]></prompt>
+					<tooltip><![CDATA[P_START_DATE]]></tooltip>
+					<value><![CDATA[NULL_VALUE]]></value>
+					<bracket><![CDATA[null]]></bracket>
+				</bind>
+				<bind id="P_END_DATE">
+					<prompt><![CDATA[P_END_DATE]]></prompt>
+					<tooltip><![CDATA[P_END_DATE]]></tooltip>
+					<value><![CDATA[NULL_VALUE]]></value>
+					<bracket><![CDATA[null]]></bracket>
+				</bind>
+				<bind id="CON_ID">
+					<prompt><![CDATA[CON_ID]]></prompt>
+					<tooltip><![CDATA[CON_ID]]></tooltip>
+					<value><![CDATA[3]]></value>
+					<bracket><![CDATA[null]]></bracket>
+				</bind>
+			</binds>
+		</query>
+		<display id="null" type="" style="Table" enable="true">
+			<name><![CDATA[db datafiles]]></name>
+			<description><![CDATA[]]></description>
+			<tooltip><![CDATA[]]></tooltip>
+			<drillclass><![CDATA[]]></drillclass>
+			<CustomValues>
+				<TYPE><![CDATA[horizontal]]></TYPE>
+			</CustomValues>
+			<query>
+				<sql><![CDATA[select
+  f.tablespace_name
+  ,f.status
+  ,f.file_name
+  ,f.bytes/(1024*1024)														 size_mb
+  ,decode(f.maxbytes,0,f.bytes,f.maxbytes)/(1024*1024)						 max_mb
+  ,trunc(s.free/(1024*1024))												 free_mb
+  ,trunc((decode(f.maxbytes,0,bytes,f.maxbytes)-f.bytes)/(1024*1024))		 ext_mb
+  ,trunc((s.free+decode(f.maxbytes,0,bytes,f.maxbytes)-f.bytes)/(1024*1024)) free_tot_mb
+  ,f.autoextensible															 ext
+  ,trunc(f.increment_by*t.block_size/(1024*1024),3)							 next_mb
+  ,'alter database datafile '''||f.file_name||'''  autoextend on next '||f.increment_by*t.block_size/(1024*1024)||'M maxsize '||f.maxbytes/(1024*1024)||'M;' extend
+  ,'alter database datafile '''||f.file_name||'''  resize '||f.maxbytes/(1024*1024)||'M;' resize
+  ,'alter tablespace '||f.tablespace_name ||' add datafile '''||f.file_name||''' size '||f.maxbytes/(1024*1024)||'M autoextend on next '||f.increment_by*t.block_size/(1024*1024)||'M maxsize '||f.maxbytes/(1024*1024)||'M;' new
+from cdb_data_files f
+        join cdb_tablespaces t on f.tablespace_name = t.tablespace_name and f.con_id = t.con_id
+        left outer join (select con_id, file_id, sum(bytes) free from cdb_free_space where con_id = :CON_ID group by con_id,file_id) s on f.file_id = s.file_id and f.con_id = s.con_id
+where 1=1
+  and f.con_id = :CON_ID    
+order by f.tablespace_name,f.file_name;]]></sql>
+				<binds>
+					<bind id="CON_ID">
+						<prompt><![CDATA[CON_ID]]></prompt>
+						<tooltip><![CDATA[CON_ID]]></tooltip>
+						<value><![CDATA[NULL_VALUE]]></value>
+						<bracket><![CDATA[null]]></bracket>
+					</bind>
+				</binds>
+			</query>
+		</display>
+		<display id="null" type="" style="Table" enable="true">
+			<name><![CDATA[tablespace datafiles]]></name>
+			<description><![CDATA[]]></description>
+			<tooltip><![CDATA[]]></tooltip>
+			<drillclass><![CDATA[]]></drillclass>
+			<CustomValues>
+				<TYPE><![CDATA[horizontal]]></TYPE>
+			</CustomValues>
+			<query>
+				<sql><![CDATA[select
+  f.tablespace_name
+  ,f.status
+  ,f.file_name
+  ,f.bytes/(1024*1024)														 size_mb
+  ,decode(f.maxbytes,0,f.bytes,f.maxbytes)/(1024*1024)						 max_mb
+  ,trunc(s.free/(1024*1024))												 free_mb
+  ,trunc((decode(f.maxbytes,0,bytes,f.maxbytes)-f.bytes)/(1024*1024))		 ext_mb
+  ,trunc((s.free+decode(f.maxbytes,0,bytes,f.maxbytes)-f.bytes)/(1024*1024)) free_tot_mb
+  ,f.autoextensible															 ext
+  ,trunc(f.increment_by*t.block_size/(1024*1024),3)							 next_mb
+  ,'alter database datafile '''||f.file_name||'''  autoextend on next '||f.increment_by*t.block_size/(1024*1024)||'M maxsize '||f.maxbytes/(1024*1024)||'M;' extend
+  ,'alter database datafile '''||f.file_name||'''  resize '||f.maxbytes/(1024*1024)||'M;' resize
+  ,'alter tablespace '||f.tablespace_name ||' add datafile '''||f.file_name||''' size '||f.maxbytes/(1024*1024)||'M autoextend on next '||f.increment_by*t.block_size/(1024*1024)||'M maxsize '||f.maxbytes/(1024*1024)||'M;' new
+from cdb_data_files f
+        join cdb_tablespaces t on f.tablespace_name = t.tablespace_name and f.con_id = t.con_id
+        left outer join (select con_id, file_id, sum(bytes) free from cdb_free_space where con_id = :CON_ID group by con_id,file_id) s on f.file_id = s.file_id and f.con_id = s.con_id
+where 1=1
+  and f.tablespace_name = :TABLESPACE_NAME
+  and f.con_id = :CON_ID
+order by f.tablespace_name,f.file_name;]]></sql>
+			</query>
+		</display>
+		<display id="null" type="" style="Table" enable="true">
+			<name><![CDATA[tablespace segments]]></name>
+			<description><![CDATA[]]></description>
+			<tooltip><![CDATA[]]></tooltip>
+			<drillclass><![CDATA[]]></drillclass>
+			<CustomValues>
+				<TYPE><![CDATA[horizontal]]></TYPE>
+			</CustomValues>
+			<query>
+				<sql><![CDATA[select s.segment_name
+	,s.segment_type
+	,s.tablespace_name
+	,round(s.bytes/1024/1024) MB
+	,s.blocks
+	,'SQLDEV:LINK:'||s.owner||':'||s.segment_type||':'||segment_name||':oracle.dbtools.raptor.controls.grid.DefaultDrillLink' link
+	,'(select * from  table(dbms_space.object_growth_trend('''||s.owner||''','''||s.segment_name||''','''||s.segment_type||'''));' trend
+from cdb_segments s
+where 1=1
+	and s.tablespace_name  = :TABLESPACE_NAME
+    and s.con_id = :CON_ID]]></sql>
+			</query>
+		</display>
+		<display id="null" type="" style="Table" enable="true">
+			<name><![CDATA[db size]]></name>
+			<description><![CDATA[]]></description>
+			<tooltip><![CDATA[]]></tooltip>
+			<drillclass><![CDATA[]]></drillclass>
+			<CustomValues>
+				<TYPE><![CDATA[horizontal]]></TYPE>
+			</CustomValues>
+			<query>
+				<sql><![CDATA[select 'datafiles' type,trunc(sum(f.bytes)/1014/1024) total_mb,trunc(sum(s.free)/1014/1024) free_mb
+from cdb_data_files f
+        join cdb_tablespaces t on f.tablespace_name = t.tablespace_name and f.con_id = t.con_id
+        left outer join (select con_id, file_id, sum(bytes) free from cdb_free_space where con_id = :CON_ID group by con_id,file_id) s on f.file_id = s.file_id and f.con_id = s.con_id
+where 1=1
+    and f.con_id = :CON_ID
+union all
+select 'tempfiles',trunc(sum(BYTES)/1014/1024),0 from cdb_temp_files where con_id = :CON_ID
+union all
+select 'logfiles',trunc(sum(BYTES)/1014/1024),0 from v$log]]></sql>
+			</query>
+		</display>
+		<display id="null" type="" style="Table" enable="true">
+			<name><![CDATA[tablespace growth]]></name>
+			<description><![CDATA[]]></description>
+			<tooltip><![CDATA[]]></tooltip>
+			<drillclass><![CDATA[]]></drillclass>
+			<CustomValues>
+				<TYPE><![CDATA[horizontal]]></TYPE>
+			</CustomValues>
+			<query>
+				<sql><![CDATA[select tablespace_name
+    ,to_char(end_interval_time,'yyyy-mm-dd hh24:mi:ss')   end_interval_time
+    ,trunc(tablespace_size/1024/1024*dt.block_size)      size_mb
+    ,trunc(tablespace_usedsize/1024/1024*dt.block_size)  used_mb  
+    ,trunc(tablespace_maxsize/1024/1024*dt.block_size)   maxsize_mb
+from cdb_hist_tbspc_space_usage tsu
+    join dba_hist_snapshot hs           on tsu.dbid = hs.dbid and tsu.snap_id = hs.snap_id
+    join cdb_hist_tablespace_stat ts    on tsu.tablespace_id = ts.ts# and tsu.dbid = ts.dbid and tsu.snap_id = ts.snap_id and tsu.con_id = ts.con_id
+    join cdb_tablespaces dt             on ts.tsname = dt.tablespace_name and ts.con_id = dt.con_id
+where 1=1 
+    and tablespace_name = :TABLESPACE_NAME
+    and tsu.con_id = :CON_ID
+order by end_interval_time,tablespace_name]]></sql>
+			</query>
+		</display>
+		<display id="null" type="" style="Chart" enable="true">
+			<name><![CDATA[tablespace growth chart]]></name>
+			<description><![CDATA[]]></description>
+			<tooltip><![CDATA[]]></tooltip>
+			<drillclass><![CDATA[]]></drillclass>
+			<CustomValues>
+				<PLOT_HGRID_WIDTH><![CDATA[THINNER]]></PLOT_HGRID_WIDTH>
+				<Y1AXIS_SCALE_INCREMENT><![CDATA[30.0]]></Y1AXIS_SCALE_INCREMENT>
+				<Y2AXIS_SCALE_MAXIMUM><![CDATA[60.0]]></Y2AXIS_SCALE_MAXIMUM>
+				<Y1AXIS_LINE_WIDTH><![CDATA[THINNEST]]></Y1AXIS_LINE_WIDTH>
+				<Y1AXIS_TITLE_ALIGNMENT><![CDATA[CENTER]]></Y1AXIS_TITLE_ALIGNMENT>
+				<LEGEND_LOCATION><![CDATA[AUTOMATIC]]></LEGEND_LOCATION>
+				<LEGEND_ALIGNMENT><![CDATA[LEFT]]></LEGEND_ALIGNMENT>
+				<XAXIS_LINE_WIDTH><![CDATA[THINNEST]]></XAXIS_LINE_WIDTH>
+				<DATA_MAP_COLUMNS><![CDATA[\,"END_INTERVAL_TIME"]]></DATA_MAP_COLUMNS>
+				<Y1AXIS_SCALE_MAXIMUM><![CDATA[180.0]]></Y1AXIS_SCALE_MAXIMUM>
+				<XAXIS_TITLE_ALIGNMENT><![CDATA[CENTER]]></XAXIS_TITLE_ALIGNMENT>
+				<XAXIS_TICK_LABEL_ROTATE><![CDATA[HORIZONTAL]]></XAXIS_TICK_LABEL_ROTATE>
+				<Y1AXIS_LOGARITHMIC_BASE><![CDATA[BASE_10]]></Y1AXIS_LOGARITHMIC_BASE>
+				<TYPE><![CDATA[LINE_VERT_ABS]]></TYPE>
+				<GRID_WIDTH><![CDATA[THINNER]]></GRID_WIDTH>
+				<PLOT_DATALABELS_BAR_POSITION><![CDATA[ABOVE]]></PLOT_DATALABELS_BAR_POSITION>
+				<FOOTNOTE_ALIGNMENT><![CDATA[LEFT]]></FOOTNOTE_ALIGNMENT>
+				<XAXIS_TICK_LABEL_SKIP_MODE><![CDATA[AUTOMATIC]]></XAXIS_TICK_LABEL_SKIP_MODE>
+				<DATA_MAP_COLNAMES><![CDATA[\,"END_INTERVAL_TIME","SIZE_GB","TABLESPACE_NAME"]]></DATA_MAP_COLNAMES>
+				<DATA_MAP_SERIES><![CDATA[\,"TABLESPACE_NAME"]]></DATA_MAP_SERIES>
+				<Y2AXIS_LOGARITHMIC_BASE><![CDATA[BASE_10]]></Y2AXIS_LOGARITHMIC_BASE>
+				<STYLE><![CDATA[Regatta]]></STYLE>
+				<TITLE_ALIGNMENT><![CDATA[LEFT]]></TITLE_ALIGNMENT>
+				<Y2AXIS_TICK_LABEL_ROTATE><![CDATA[HORIZONTAL]]></Y2AXIS_TICK_LABEL_ROTATE>
+				<Y2AXIS_SCALE_MINIMUM><![CDATA[10.0]]></Y2AXIS_SCALE_MINIMUM>
+				<Y2AXIS_LINE_WIDTH><![CDATA[THINNEST]]></Y2AXIS_LINE_WIDTH>
+				<DATA_MAP_VALUES><![CDATA[\,"SIZE_GB"]]></DATA_MAP_VALUES>
+				<Y1AXIS_TICK_LABEL_ROTATE><![CDATA[HORIZONTAL]]></Y1AXIS_TICK_LABEL_ROTATE>
+				<Y2AXIS_SCALE_INCREMENT><![CDATA[10.0]]></Y2AXIS_SCALE_INCREMENT>
+				<PLOT_VGRID_WIDTH><![CDATA[THINNER]]></PLOT_VGRID_WIDTH>
+				<Y2AXIS_TITLE_ALIGNMENT><![CDATA[CENTER]]></Y2AXIS_TITLE_ALIGNMENT>
+				<SUBTITLE_ALIGNMENT><![CDATA[LEFT]]></SUBTITLE_ALIGNMENT>
+			</CustomValues>
+			<query>
+				<sql><![CDATA[select 
+     trunc(end_interval_time,'dd') end_interval_time
+    ,tablespace_name
+    ,max(round(tablespace_size/1024/1024/1024*dt.block_size,2)) size_gb
+from cdb_hist_tbspc_space_usage tsu
+    join dba_hist_snapshot hs           on tsu.dbid = hs.dbid and tsu.snap_id = hs.snap_id
+    join cdb_hist_tablespace_stat ts    on tsu.tablespace_id = ts.ts# and tsu.dbid = ts.dbid and tsu.snap_id = ts.snap_id and tsu.con_id = ts.con_id
+    join cdb_tablespaces dt             on ts.tsname = dt.tablespace_name and ts.con_id = dt.con_id
+where 1=1 
+    and tablespace_name = :TABLESPACE_NAME
+    and tsu.con_id = :CON_ID
+group by tablespace_name,trunc(end_interval_time,'dd')
+order by end_interval_time,tablespace_name]]></sql>
 			</query>
 		</display>
 	</display>
