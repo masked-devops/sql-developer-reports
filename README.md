@@ -1,5 +1,4 @@
 # SQL Developer Reports 
-
 SQL Developer reports for Oracle database version 12c+ tuning and more.
 
 ## Installation
@@ -22,6 +21,7 @@ The database user needs the select_catalog_role privilege to run the reports.
     grant connect,select_catalog_role to c##_sqd container=all;
 
 ## Documentation
+Below the list of the reports, some of them require the Oracle Diagnostics Pack License.
 
 * Masked-Devops Session History
   
