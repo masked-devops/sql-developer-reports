@@ -1,9 +1,18 @@
 # Masked-Devops- Session History
-The report is around two system views  [V$ACTIVE_SESSION_HISTORY](https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/V-ACTIVE_SESSION_HISTORY.html) (For the last 24hrs) and [DBA_HIST_ACTIVE_SESS_HISTORY](https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/DBA_HIST_ACTIVE_SESS_HISTORY.html).
+The Orace database views [V$ACTIVE_SESSION_HISTORY](https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/V-ACTIVE_SESSION_HISTORY.html) and [DBA_HIST_ACTIVE_SESS_HISTORY](https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/DBA_HIST_ACTIVE_SESS_HISTORY.html) are gold mines for tuning the database. V$ACTIVE_SESSION_HISTORY contains snapshots of active database sessions taken once a second, DBA_HIST_ACTIVE_SESS_HISTORY contains snapshots of V$ACTIVE_SESSION_HISTORY once every 10 seconds.
+
+OEM has the Performace page, now ASH Analytics, that shows the workload on the database based on those views, it is the first starting point when checking the database performance. When more detailed information is needed though, like looking at the raw data, OEM does not provide it .
+
+The two views can be used as fact tables for the creation of the reports, and the parent/child feature can be used to drill down into the raw data.
+
+The report gives a chart similar to the OEM ASH Analytics, with few more features.
+
+* The slot size in seconds can be set with the INTERVAL parameter.
+* The dimension of the chart can be changed with the DIM parameter, default is WAIT_CLASS.
+* Clicking on the histogram, the child reports can give details of the whole interval or filter for the dimension selected. 
+* The data can be filtered using the filter parameters. 
 
 Starting the report without specifying any parameter (All NULLs checked) will give you the last 24hrs, interval=600 seconds, dim=wait_class.
-
-Clicking on the histogram will give details for the time slot in the child reports for the whole histogram or the dimension selected.
 
 In the report below the blue part of the histogram for the time slot 8:40-8:50 has been selected, the child report "Sessions by Dim" shows all sessions samples for the dim "Configuration".
 
@@ -67,7 +76,7 @@ The width of the histograms report, the time interval in seconds of the samples.
 
 ### dim
 Dimension of the report, it will give a view of the report based on different columns.
-Wokload per container, check which container is causing more load. In RAC "instance_number" will give the load per instance.
+Wokload per container, check which container is causing more load. In RAC, "instance_number" will give the load per instance.
 
     start_date                  : 2022-09-25 14:00
     end_date                    : 2022-09-25 23:00
