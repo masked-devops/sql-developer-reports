@@ -32,10 +32,8 @@ Below the list of the reports, some of them require the Oracle Diagnostics Pack 
 
 * Masked-Devops SQL History
   
-    History of the sql execution plan, load plan baseline, load sql profile, AWR reports 
+    History of the sql execution plans, load plan baseline, load sql profile, AWR reports 
     
-    <img src="doc/img/Masked-Devops-SessionHistory/2022-09-25.png" width="600" height="300">
-
 * [Masked-Devops AWR reports](doc/Masked-Devops-AWR-Reports.md)
     
     Create AWR/ASH/ADDM reports files.
