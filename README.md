@@ -8,7 +8,7 @@ SQL Developer reports for Oracle database version 12c+ tuning and more.
 4. View -> Reports
 5. Right click on User Defined Reports -> Open Report... -> Select the masked-devops.sql-developer-reports.xml file
 
-Link to the video <>
+<img src="doc/img/Masked-Devops.Load.Reports.png" width="600" height="300">
 
 The database user needs the select_catalog_role privilege to run the reports.
     
