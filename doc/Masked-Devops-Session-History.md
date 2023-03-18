@@ -119,6 +119,53 @@ WAIT_CLASS
 PLSQL_ENTRY_OBJECT_ID
 DBA_HIST_ONLY    
 
+# Tips
+More than one filter at the same time can be used.
+
+Samples from one session only, sid=71	serial#=10164: 
+
+    start_date                  : 2022-09-25 14:00
+    end_date                    : 2022-09-25 23:00
+    SESSION_SID                 : 71
+    SESSION_SERIAL#             : 10164
+
+![Filter](img/Masked-Devops-SessionHistory/2022-09-25.SID.png)
+
+
+Trace sql_id execution in one session only, sid=71	serial#=10164   sql_id=budtrjayjnvw3: 
+
+    start_date                  : 2022-09-25 14:00
+    end_date                    : 2022-09-25 23:00
+    SESSION_SID                 : 71
+    SESSION_SERIAL#             : 10164
+    SQL_ID                      : budtrjayjnvw3
+
+Trace sql_id execution from a specific server, sid=71	serial#=10164   machine=server01: 
+
+    start_date                  : 2022-09-25 14:00
+    end_date                    : 2022-09-25 23:00
+    SQL_ID                      : budtrjayjnvw3
+    MACHINE                     : server01
+
+Samples from one user only USER_ID: 
+
+    start_date                  : 2022-09-25 14:00
+    end_date                    : 2022-09-25 23:00
+    USER_ID                     : 139
+
+Samples from one client server only: 
+
+    start_date                  : 2022-09-25 14:00
+    end_date                    : 2022-09-25 23:00
+    MACHINE                     : appserver1
+
+Samples from one plsql object only only: 
+
+    start_date                  : 2022-09-25 14:00
+    end_date                    : 2022-09-25 23:00
+    PLSQL_ENTRY_OBJECT_ID       : 80316
+
+
 # Child Reports
 Child reports provide the raw data from the system tables plus some top reports.
 In the following examples dim=wait_class, the yellow part of the histogram at time 14:40 (14:40-14:50) is selected with dim value as "Configuration".
@@ -231,41 +278,4 @@ Counts of the samples grouped by:
 
 It creates the ASH report for the slot(14:40-14:50) 
 ![child](img/Masked-Devops-SessionHistory/2022-09-25.child.ASHText.png)
-
-# Tips
-Samples from one session only, sid=71	serial#=10164: 
-
-    start_date                  : 2022-09-25 14:00
-    end_date                    : 2022-09-25 23:00
-    SESSION_SID                 : 71
-    SESSION_SERIAL#             : 10164
-
-![Filter](img/Masked-Devops-SessionHistory/2022-09-25.SID.png)
-
-
-Trace one session sql_id executions, sid=71	serial#=10164   sql_id=budtrjayjnvw3: 
-
-    start_date                  : 2022-09-25 14:00
-    end_date                    : 2022-09-25 23:00
-    SESSION_SID                 : 71
-    SESSION_SERIAL#             : 10164
-    SQL_ID                      : budtrjayjnvw3
-
-Samples from one user only USER_ID: 
-
-    start_date                  : 2022-09-25 14:00
-    end_date                    : 2022-09-25 23:00
-    USER_ID                     : 139
-
-Samples from one client server only: 
-
-    start_date                  : 2022-09-25 14:00
-    end_date                    : 2022-09-25 23:00
-    MACHINE                     : appserver1
-
-Samples from one plsql object only only: 
-
-    start_date                  : 2022-09-25 14:00
-    end_date                    : 2022-09-25 23:00
-    PLSQL_ENTRY_OBJECT_ID       : 80316
 
