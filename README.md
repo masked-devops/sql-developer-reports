@@ -55,13 +55,13 @@ Below the list of the reports, some of them require the Oracle Diagnostics Pack 
     
     <img src="doc/img/Masked-Devops-SessionBrowser/Masked-Devops.AWR.SessionBrowser.png" width="600" height="300">
 
-* **Masked Devops CPU**
+* **Masked-Devops CPU**
   
     Operating system and Database CPU reports
     
     <img src="doc/img/Masked-Devops-CPU/Masked-Devops.AWR.CPU.png" width="600" height="300">
 
-* **Masked Devops I/O**
+* **Masked-Devops I/O**
   
     Database I/O reports, IOPS, Throughput
     
@@ -80,13 +80,13 @@ Below the list of the reports, some of them require the Oracle Diagnostics Pack 
     
     <img src="doc/img/Masked-Devops-ReadTraceFile/Masked-Devops.AWR.ReadTraceFile.png" width="600" height="300">
 
-* **Masked Devops AWR Sysstat**
+* **Masked-Devops AWR Sysstat**
 
     Chart reports on the sysstat statistics
     
     <img src="doc/img/Masked-Devops-AWRSysstat/Masked-Devops.AWR.Sysstat.png" width="600" height="300">
 
-* **Masked Devops Advisor reports**
+* **Masked-Devops Advisor reports**
     
     Read the Advisors reports
     
