@@ -6,7 +6,7 @@ SQL Developer reports for Oracle database version 12c+ tuning and more.
 2. Code -> Download ZIP -> Unzip the file locally.
 3. Open SQL Developer.
 4. View -> Reports
-5. Right click on User Defined Reports -> Open Report... -> Select the masked-devops.sql-developer-reports.xml file
+5. Right click on User Defined Reports -> Open Report... -> Select the file masked-devops.sql-developer-reports.xml
 
 <img src="doc/img/Masked-Devops.Load.Reports.png" width="600" height="300">
 
